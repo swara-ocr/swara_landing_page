@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <title>SWARA – Every word deserves to be heard</title>
+    <link rel="stylesheet" href="swara.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&display=swap" rel="stylesheet">
+</head>
+
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header>
+    <div class="wrap nav">
+    <a class="logo" href="#top" aria-label="SWARA home"><svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M12 3v18M3 12h18"/><circle cx="12" cy="12" r="2.6" fill="var(--accent)"/></svg>SWARA</a>
+    <nav aria-label="Main">
+        <ul>
+            <li><a href="#problem">The problem</a></li>
+            <li><a href="#how">How it works</a></li>
+            <li><a href="#team">Team</a></li>
+        </ul>
+    </nav>
+    <a class="btn btn-fill" href="#contact">Join the waitlist</a>
+    </div>
+</header>
+
+<main id="main">
+<section class="hero" id="top" style="padding-top:72px">
+<div class="wrap">
+<div>
+<h1>Every word deserves to be heard.</h1>
+<p class="lead">SWARA is an intelligent OCR-powered tabletop reader designed to help blind and visually impaired individuals access printed information independently through advanced text recognition and natural voice output.</p>
+    <div class="cta-row">
+        <a class="btn btn-fill" href="#features">Explore features</a>
+        <a class="btn btn-line" href="#contact">Join the waitlist</a>
+    </div>
+</div>
+
+<div class="rig" id="rig" role="group" aria-label="Demonstration: SWARA reading a medicine label aloud">
+<div class="head" aria-hidden="true">
+    <i></i>
+    <b></b>
+</div>
+<div class="beam" aria-hidden="true"></div>
+    <div class="base">
+        <div class="paper">
+            <small>Pharmacy label</small>
+            <p class="sentence" id="sentence">
+                <span class="w">Take</span> 
+                <span class="w">one</span> 
+                <span class="w">tablet</span> 
+                <span class="w">every</span> 
+                <span class="w">eight</span> 
+                <span class="w">hours</span> 
+                <span class="w">with</span> 
+                <span class="w">food.</span>
+            </p>
+        </div>
+        <div class="tag" aria-hidden="true">SWARA</div>
+    </div>
+        <div class="controls">
+            <button type="button" id="listen">Listen to this label</button>
+            <button type="button" id="pause" aria-pressed="false">Pause demo</button>
+        </div>
+        <p class="note" id="note" aria-live="polite"></p>
+    </div>
+</div>
+</section>
+
+<section class="strip" id="features" aria-label="Key capabilities">
+<div class="wrap">
+<ul>
+    <li>
+        <strong>OCR recognition</strong>
+        <span>Reads printed text</span>
+    </li>
+    <li>
+        <strong>Text to speech</strong>
+        <span>Converts text to audio</span>
+    </li>
+    <li>
+        <strong>Multi-language</strong>
+        <span>Supports local languages</span>
+    </li>
+    <li>
+        <strong>Accessible design</strong>
+        <span>Easy to use for everyone</span>
+    </li>
+</ul>
+</div>
+</section>
+
+<section class="how" id="how" aria-labelledby="how-h">
+<div class="wrap">
+  <div class="head">
+    <h2 id="how-h">Simple. Smart. Accessible.</h2>
+    <p>Three steps from printed page to spoken words. No phone, no screen, no setup each time.</p>
+  </div>
+
+  <ol class="steps">
+    <li class="step">
+      <span class="node" aria-hidden="true">1</span>
+      <div class="card">
+        <div class="scene" aria-hidden="true">
+          <svg viewBox="0 0 240 150">
+            <rect x="85" y="6" width="70" height="22" rx="11" class="ink"/>
+            <circle cx="104" cy="17" r="5" class="acc"/>
+            <path d="M104 28 L136 28 L178 92 L62 92 Z" class="acc" opacity=".22"/>
+            <rect x="40" y="92" width="160" height="48" rx="6" class="paper"/>
+            <rect x="56" y="104" width="128" height="6" rx="3" class="line-d"/>
+            <rect x="56" y="118" width="96" height="6" rx="3" class="line-d"/>
+          </svg>
+        </div>
+        <div class="body">
+          <h3>Place your document</h3>
+          <p>Slide a book page, letter or label under the reader. It lines up on its own.</p>
+        </div>
+        <p class="fact"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10.5l4 4 8-9"/></svg>Works with books, mail, menus and packaging</p>
+      </div>
+    </li>
+
+    <li class="step">
+      <span class="node" aria-hidden="true">2</span>
+      <div class="card">
+        <div class="scene" aria-hidden="true">
+          <svg viewBox="0 0 240 150">
+            <rect x="40" y="14" width="160" height="122" rx="8" class="paper"/>
+            <rect x="58" y="32" width="124" height="7" rx="3.5" class="line-d"/>
+            <rect x="58" y="52" width="90" height="7" rx="3.5" class="line-d"/>
+            <rect x="58" y="72" width="116" height="7" rx="3.5" class="line-d"/>
+            <rect x="58" y="92" width="70" height="7" rx="3.5" class="line-d"/>
+            <rect x="58" y="112" width="104" height="7" rx="3.5" class="line-d"/>
+            <g class="scan">
+              <rect x="34" y="26" width="172" height="3" rx="1.5" class="acc"/>
+              <rect x="34" y="26" width="172" height="22" class="acc" opacity=".16"/>
+            </g>
+          </svg>
+        </div>
+        <div class="body">
+          <h3>Scan the text</h3>
+          <p>SWARA reads the printed words with OCR and turns them into clean, readable text.</p>
+        </div>
+        <p class="fact"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10.5l4 4 8-9"/></svg>Recognises printed text in multiple languages</p>
+      </div>
+    </li>
+
+    <li class="step">
+      <span class="node" aria-hidden="true">3</span>
+      <div class="card">
+        <div class="scene listen-scene" aria-hidden="true">
+          <svg viewBox="0 0 240 150">
+            <g>
+              <rect class="listen-bar acc" style="--d:0s" x="38" y="55" width="8" height="40" rx="4"/>
+              <rect class="listen-bar acc" style="--d:.1s" x="56" y="40" width="8" height="70" rx="4"/>
+              <rect class="listen-bar acc" style="--d:.2s" x="74" y="25" width="8" height="100" rx="4"/>
+              <rect class="listen-bar acc" style="--d:.3s" x="92" y="48" width="8" height="54" rx="4"/>
+              <rect class="listen-bar acc" style="--d:.4s" x="110" y="15" width="8" height="120" rx="4"/>
+              <rect class="listen-bar acc" style="--d:.5s" x="128" y="38" width="8" height="74" rx="4"/>
+              <rect class="listen-bar acc" style="--d:.6s" x="146" y="28" width="8" height="94" rx="4"/>
+              <rect class="listen-bar acc" style="--d:.7s" x="164" y="50" width="8" height="50" rx="4"/>
+              <rect class="listen-bar acc" style="--d:.8s" x="182" y="62" width="8" height="26" rx="4"/>
+            </g>
+          </svg>
+        </div>
+        <div class="body">
+          <h3>Listen</h3>
+          <p>Hear the recognised text read aloud through the speaker, right as it is scanned.</p>
+        </div>
+        <p class="fact"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10.5l4 4 8-9"/></svg>Clear speech at a pace you can adjust</p>
+      </div>
+    </li>
+  </ol>
+
+  <div class="cta"><a class="btn" href="#rig">Watch SWARA read a page</a></div>
+</div>
+</section>
+
+<section class="team" id="team">
+<div class="wrap center">
+<h2>Meet the minds behind SWARA</h2>
+<p class="sub">A passionate team developing accessible reading technology to make information available to everyone.</p>
+<!-- Replace these placeholders with real team members -->
+<div class="people">
+    <div class="person">
+        <div class="av">A</div>
+        <div><b>Pasindu Heshan</b>
+            <span>20251117 | w2212565</span><br>
+            <span>Role</span>
+        </div>
+    </div>
+    <div class="person">
+        <div class="av">B</div>
+        <div><b>Nethuli Sellahewa</b>
+            <span>20240537 | w2181828</span><br>
+            <span>Role</span>
+        </div>
+    </div>
+    <div class="person">
+        <div class="av">C</div>
+        <div><b>Thimithri Vidanapathirana</b>
+            <span>20251394 | w2213301</span><br>
+            <span>role</span>
+        </div>
+    </div>
+    <div class="person">
+        <div class="av">D</div>
+        <div><b>Vaitheesvaran Agastigan</b>
+            <span>20241297 | w2213237</span><br>
+            <span>role</span>
+        </div>
+    </div>
+    <div class="person">
+        <div class="av">E</div>
+        <div><b>Zayan Ashamed</b>
+            <span>20240975 | w2119778</span><br>
+            <span>role</span>
+        </div>
+    </div>
+</div>
+</div>
+</section>
+
+<section class="cta center" id="contact">
+  <div class="wrap">
+    <h2>Be part of the future of accessible reading.</h2>
+    <p>SWARA is currently in development.<br>Be the first to know when we launch!</p>
+
+    <form class="waitlist" id="waitlist" novalidate>
+      <label class="sr" for="email">Email address</label>
+      <input id="email" type="email" name="email" placeholder="Enter your email address" autocomplete="email" required>
+      <button class="btn btn-fill" type="submit">Join the Waitlist</button>
+    </form>
+    <p class="fine" id="wl-msg" role="status">No spam. Just important SWARA updates.</p>
+
+    <div class="collab">
+      <p>Interested in collaborating, testing SWARA, or sharing feedback? We'd love to hear from you.</p>
+      <a class="btn btn-line" href="mailto:your-team@example.com">Contact Our Team</a>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+    
+      <nav class="foot-col" aria-labelledby="ft-links">
+        <h3 id="ft-links">Quick Links</h3>
+        <ul>
+          <li><a href="#top">Home</a></li>
+          <li><a href="#features">The Features</a></li>
+          <li><a href="#how">How It Works</a></li>
+          <li><a href="#team">Meet Our Team</a></li>
+        </ul>
+      </nav>
+
+      <nav class="foot-col" aria-labelledby="ft-touch">
+        <h3 id="ft-touch">Get in Touch</h3>
+        <ul>
+          <li><a href="mailto:your-team@example.com">Email Us</a></li>
+          <li><a href="https://github.com/your-org" target="_blank" rel="noopener">GitHub</a></li>
+          <li><a href="https://www.linkedin.com/company/your-page" target="_blank" rel="noopener">LinkedIn</a></li>
+        </ul>
+      </nav>
+    </div>
+
+    <div class="foot-bottom">
+      <p>© 2026 SWARA. All rights reserved.</p>
+      <p>Built with accessibility in mind.</p>
+    </div>
+  </div>
+</footer>
+<script>
+(function(){
+var words=[].slice.call(document.querySelectorAll('.w')),rig=document.getElementById('rig'),
+note=document.getElementById('note'),
+pauseBtn=document.getElementById('pause'),listenBtn=document.getElementById('listen'),
+reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches,
+i=0,playing=!reduce,timer=null,speaking=false;
+function show(n){words.forEach(function(w,j){w.classList.toggle('on',j===n)})}
+function tick(){show(i);i=(i+1)%(words.length+2)}
+function start(){clearInterval(timer);if(playing&&!speaking)timer=setInterval(tick,520)}
+function setPlaying(p){playing=p;rig.classList.toggle('paused',!p);pauseBtn.setAttribute('aria-pressed',String(!p));pauseBtn.textContent=p?'Pause demo':'Play demo';if(!p&&!speaking)show(-1);start()}
+if(reduce){rig.classList.add('paused');pauseBtn.setAttribute('aria-pressed','true');pauseBtn.textContent='Play demo'}
+pauseBtn.addEventListener('click',function(){setPlaying(!playing)});
+listenBtn.addEventListener('click',function(){
+var ss=window.speechSynthesis;
+if(!ss||!window.SpeechSynthesisUtterance){note.textContent='Audio isn’t supported in this browser.';return}
+try{ss.cancel();speaking=true;clearInterval(timer);
+var text=words.map(function(w){return w.textContent}).join(' '),u=new SpeechSynthesisUtterance(text),starts=[],p=0;
+words.forEach(function(w){starts.push(p);p+=w.textContent.length+1});
+u.rate=.9;
+u.onboundary=function(e){var n=0;for(var j=0;j<starts.length;j++){if(e.charIndex>=starts[j])n=j}show(n)};
+var done=function(){speaking=false;rig.classList.remove('paused');note.textContent='';show(-1);i=0;start()};
+u.onend=done;u.onerror=done;
+rig.classList.remove('paused');note.textContent='Reading aloud…';ss.speak(u)
+}catch(err){speaking=false;note.textContent='Audio isn’t available right now.'}
+});
+if(playing)start();else show(0);
+})();
+(function(){
+  var bars=[].slice.call(document.querySelectorAll('.listen-scene .listen-bar'));
+  if(!bars.length)return;
+  var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches,raf=null;
+
+  function frame(ms){
+    var t=ms/1000;
+    bars.forEach(function(b,i){
+      var v=.3+.7*Math.abs(Math.sin(t*2.2+i*.7)*Math.cos(t*1.3+i*.45));
+      b.style.transform='scaleY('+v.toFixed(3)+')';
+    });
+    raf=requestAnimationFrame(frame);
+  }
+  function run(){if(!raf&&!reduce)raf=requestAnimationFrame(frame)}
+  function stop(){cancelAnimationFrame(raf);raf=null}
+
+  var scene=bars[0].closest('.scene');
+  if('IntersectionObserver' in window){
+    new IntersectionObserver(function(e){e[0].isIntersecting?run():stop()}).observe(scene);
+  }else{run()}
+})();
+document.getElementById('waitlist').addEventListener('submit', function (e) {
+  e.preventDefault();
+  var email = document.getElementById('email');
+  var msg = document.getElementById('wl-msg');
+  if (!email.validity.valid || !email.value.trim()) {
+    msg.textContent = 'Please enter a valid email address.';
+    email.focus();
+    return;
+  }
+  msg.textContent = 'Thank you! You are on the waitlist.';
+  email.value = '';
+});
+</script>
+</body>
+</html>
