@@ -430,6 +430,20 @@ a:hover {
   min-height: 44px;
 }
 
+.social {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 20px;
+}
+
+.social a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  min-width: 44px;
+  color: var(--text);
+}
+
 .footer-brand {
   font-family: var(--font-display), system-ui, sans-serif;
   font-weight: 800;

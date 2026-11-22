@@ -27,10 +27,17 @@ export const SITE = {
   githubUrl: 'https://github.com/swara-ocr',
 };
 
+// Public social media pages for the project.
+export const SOCIAL = [
+  { name: 'Instagram', url: 'https://www.instagram.com/teamswara.reads' },
+  { name: 'Facebook', url: 'https://www.facebook.com/share/195AGcZZMM/' },
+  { name: 'LinkedIn', url: 'https://www.linkedin.com/company/swara-reads/' },
+];
+
 export const TEAM = [
-  { name: 'Pasindu Heshan Kavinda', role: '[ROLE]', initial: 'P' },
-  { name: 'Nethuli Sellahewa', role: '[ROLE]', initial: 'N' },
-  { name: 'Thimithri Vidanapathirana', role: '[ROLE]', initial: 'T' },
-  { name: 'Vaitheesvaran Agastigan', role: '[ROLE]', initial: 'V' },
-  { name: 'Zayan Ashamed', role: '[ROLE]', initial: 'Z' },
+  { name: 'Pasindu Heshan Kavinda', role: 'Product Owner / Developer', initial: 'P' },
+  { name: 'Nethuli Sellahewa', role: 'Developer, UI / UX and Testing', initial: 'N' },
+  { name: 'Thimithri Vidanapathirana', role: 'Scrum Master / Developer', initial: 'T' },
+  { name: 'Vaitheesvaran Agastigan', role: 'Developer, OCR', initial: 'V' },
+  { name: 'Zayan Ahamed', role: 'Developer, TTS and Hardware', initial: 'Z' },
 ];

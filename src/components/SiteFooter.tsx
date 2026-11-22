@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { SITE } from '@/lib/site';
+import { SITE, SOCIAL } from '@/lib/site';
 
 export default function SiteFooter() {
   return (
@@ -17,6 +17,15 @@ export default function SiteFooter() {
               {SITE.teamEmail}
             </a>
           </p>
+          <ul className="social list-reset" aria-label="SWAARA on social media">
+            {SOCIAL.map((s) => (
+              <li key={s.name}>
+                <a href={s.url} target="_blank" rel="noopener noreferrer" aria-label={`SWAARA on ${s.name} (opens in a new tab)`}>
+                  {s.name}
+                </a>
+              </li>
+            ))}
+          </ul>
         </div>
         <nav className="footer-nav" aria-label="Footer">
           <Link href="/docs">Docs</Link>

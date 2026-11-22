@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { SITE, TEAM } from '@/lib/site';
+import { SITE, SOCIAL, TEAM } from '@/lib/site';
 import { APP_FIND, APP_READ, Art, Icon, PROBLEM_HAND, PROBLEM_SQUARE } from '@/components/art';
 
 export const metadata: Metadata = {
@@ -311,11 +311,20 @@ export default function AboutPage() {
               </li>
             ))}
           </ul>
-          <p>
-            <a href={SITE.githubUrl} rel="noopener noreferrer" className="tap">
-              SWAARA on GitHub
-            </a>
-          </p>
+          <ul className="social list-reset" aria-label="SWAARA online">
+            <li>
+              <a href={SITE.githubUrl} target="_blank" rel="noopener noreferrer">
+                GitHub
+              </a>
+            </li>
+            {SOCIAL.map((s) => (
+              <li key={s.name}>
+                <a href={s.url} target="_blank" rel="noopener noreferrer" aria-label={`SWAARA on ${s.name} (opens in a new tab)`}>
+                  {s.name}
+                </a>
+              </li>
+            ))}
+          </ul>
         </div>
       </section>
     </main>
