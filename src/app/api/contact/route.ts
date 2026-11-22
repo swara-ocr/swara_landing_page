@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server';
 import { db } from '@/lib/db';
 import { cleanText, isEmail, CONTACT_KINDS } from '@/lib/validate';
 import { clientIp, rateLimit } from '@/lib/rateLimit';
+import { safeError } from '@/lib/safeError';
 import { contactAcknowledgement, sendMail, teamAddress, teamContactNotice } from '@/lib/email';
 
 export const runtime = 'nodejs';
@@ -53,7 +54,8 @@ export async function POST(req: Request) {
 
     return NextResponse.json(SUCCESS);
   } catch (error) {
-    console.error('[contact] failed:', error);
+    const { code, message } = safeError(error);
+    console.error('[contact] failed:', code, message);
     return fail('We could not send your message right now. Please write to us by email instead.', 500);
   }
 }

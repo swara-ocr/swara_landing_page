@@ -5,7 +5,7 @@ The landing page, documentation, waitlist and admin page for SWAARA (www.swaara.
 - **Framework:** Next.js 14 (App Router), React 18, TypeScript
 - **Database:** Neon Postgres, through Prisma
 - **Email:** optional and off by default. SMTP through nodemailer, switched on with `EMAIL_ENABLED=true`
-- **Hosting:** Vercel
+- **Hosting:** Vercel (a sign-up that fails is logged as `[waitlist] failed: <code> <cause>`, with no email addresses or secrets, so Vercel's Logs show the reason)
 
 > The project installs, typechecks and builds. It still needs a real Neon database and Vercel environment variables before the waitlist and admin page work in production. See "First run" below.
 
@@ -40,6 +40,7 @@ Everything that is not built yet is labelled "planned" or "in development" on th
    - the **pooled** string (host contains `-pooler`) into `DATABASE_URL`, and add `&pgbouncer=true` to the end
    - the **direct** string into `DIRECT_URL`
 3. Run `npx prisma db push` to create the three tables (`WaitlistSignup`, `ContactMessage`, `SiteUpdate`).
+   - No `DIRECT_URL` on your computer? Paste `prisma/neon-setup.sql` into the Neon **SQL editor** instead. It creates the three tables and adds any missing columns (such as `role`), and is safe to run more than once.
 
 ## Email (optional, off by default)
 

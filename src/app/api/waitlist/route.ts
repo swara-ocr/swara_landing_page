@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server';
 import { db } from '@/lib/db';
 import { cleanText, isEmail, INTERESTS, LANGUAGES, ROLES } from '@/lib/validate';
 import { clientIp, rateLimit } from '@/lib/rateLimit';
+import { safeError } from '@/lib/safeError';
 import { sendMail, teamAddress, teamWaitlistNotice, waitlistConfirmation } from '@/lib/email';
 
 export const runtime = 'nodejs';
@@ -70,7 +71,8 @@ export async function POST(req: Request) {
 
     return NextResponse.json(SUCCESS);
   } catch (error) {
-    console.error('[waitlist] failed:', error);
+    const { code, message } = safeError(error);
+    console.error('[waitlist] failed:', code, message);
     return fail('We could not save your sign-up right now. Please try again later, or write to us by email.', 500);
   }
 }
