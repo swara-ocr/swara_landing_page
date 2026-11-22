@@ -46,7 +46,7 @@ export default function DocPage({ params }: Props) {
 
         <article className="docs-article">
           <p className="eyebrow">
-            <Link href="/docs" className="plain">
+            <Link href="/docs" className="plain tap">
               Documentation
             </Link>
           </p>

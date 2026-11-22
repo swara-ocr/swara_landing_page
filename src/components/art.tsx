@@ -125,6 +125,14 @@ export const STEP_3 = `
 <g class="fa" opacity=".6"><rect x="148" y="94" width="68" height="6" rx="3"/><rect x="148" y="108" width="48" height="6" rx="3"/></g>
 `;
 
+export const STEP_PRESS = `
+<rect x="30" y="104" width="180" height="30" rx="12" class="fs"/>
+<rect x="84" y="62" width="72" height="50" rx="25" class="fa"/>
+<rect x="96" y="70" width="48" height="10" rx="5" fill="#fff" opacity=".3"/>
+<path d="M120 12 V40 M108 28 l12 12 l12 -12" fill="none" class="sw" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+<g fill="none" class="sa" stroke-width="3.5" stroke-linecap="round"><path d="M178 70 q10 12 0 24" opacity=".6"/><path d="M190 62 q16 20 0 40" opacity=".35"/></g>
+`;
+
 export const STEP_4 = `
 <g class="fa"><rect x="34" y="62" width="9" height="26" rx="4.5"/><rect x="52" y="48" width="9" height="54" rx="4.5"/><rect x="70" y="32" width="9" height="86" rx="4.5"/><rect x="88" y="54" width="9" height="42" rx="4.5"/><rect x="106" y="20" width="9" height="110" rx="4.5"/><rect x="124" y="44" width="9" height="62" rx="4.5"/><rect x="142" y="34" width="9" height="82" rx="4.5"/><rect x="160" y="56" width="9" height="38" rx="4.5"/><rect x="178" y="66" width="9" height="18" rx="4.5"/></g>
 `;

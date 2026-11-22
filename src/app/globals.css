@@ -66,7 +66,7 @@
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 88px;
+  scroll-padding-top: calc(88px + env(safe-area-inset-top));
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -87,6 +87,28 @@ body {
   font-size: 18px;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
+  overflow-wrap: break-word;
+}
+
+img,
+svg {
+  max-width: 100%;
+}
+
+img {
+  height: auto;
+}
+
+pre {
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+/* A standalone link that must be an easy tap target. */
+.tap {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
 }
 
 h1,
@@ -134,7 +156,7 @@ a:hover {
 .wrap {
   max-width: 1120px;
   margin: 0 auto;
-  padding: 0 24px;
+  padding: 0 max(24px, env(safe-area-inset-left)) 0 max(24px, env(safe-area-inset-right));
 }
 
 .narrow {
@@ -149,6 +171,10 @@ a:hover {
   background: var(--bg2);
   border-top: 1px solid var(--line);
   border-bottom: 1px solid var(--line);
+}
+
+.sec-head {
+  padding-bottom: 0;
 }
 
 .stack {
@@ -300,6 +326,7 @@ a:hover {
   position: sticky;
   top: 0;
   z-index: 50;
+  padding-top: env(safe-area-inset-top);
 }
 
 .menu-btn {
@@ -341,6 +368,7 @@ a:hover {
   letter-spacing: 0.04em;
   color: var(--text);
   text-decoration: none;
+  min-height: 44px;
 }
 
 .logo-mark {
@@ -359,6 +387,8 @@ a:hover {
   color: var(--text);
   text-decoration: none;
   padding: 10px 0;
+  min-width: 44px;
+  text-align: center;
 }
 
 .nav-link:hover {
@@ -384,7 +414,7 @@ a:hover {
 .site-footer {
   background: var(--bg2);
   border-top: 1px solid var(--line);
-  padding: 48px 0 32px;
+  padding: 48px 0 calc(32px + env(safe-area-inset-bottom));
 }
 
 .footer-row {
@@ -392,6 +422,12 @@ a:hover {
   flex-wrap: wrap;
   gap: 28px 64px;
   justify-content: space-between;
+}
+
+.site-footer .plain {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
 }
 
 .footer-brand {
@@ -411,6 +447,7 @@ a:hover {
 .footer-nav a {
   color: var(--text);
   padding: 10px 0;
+  min-width: 44px;
 }
 
 .footer-bottom {
@@ -791,6 +828,23 @@ a:hover {
   border-radius: 999px;
 }
 
+.chip-line {
+  background: transparent;
+  color: var(--text);
+  border: 2px solid var(--line);
+}
+
+.privacy-line {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 16px;
+}
+
+.privacy-line p {
+  flex: 1 1 260px;
+}
+
 .wave {
   display: flex;
   align-items: center;
@@ -932,6 +986,7 @@ a:hover {
 
 .input {
   font: inherit;
+  font-size: max(16px, 1em); /* 16px or more stops iOS zooming in on focus */
   padding: 14px 16px;
   border: 2px solid var(--muted);
   border-radius: 10px;
@@ -1161,6 +1216,17 @@ tbody tr:last-child td {
 }
 
 /* ---------- Tablets and phones ---------- */
+@keyframes menu-in {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
 @media (max-width: 960px) {
   .header-row {
     gap: 0 12px;
@@ -1178,15 +1244,23 @@ tbody tr:last-child td {
     align-items: stretch;
     gap: 0;
     padding-bottom: 12px;
-    max-height: calc(100vh - 80px);
-    max-height: calc(100dvh - 80px);
+    max-height: calc(100vh - 96px);
     overflow-y: auto;
+    overscroll-behavior: contain;
+  }
+  @supports (height: 100dvh) {
+    .nav {
+      max-height: calc(100dvh - 96px - env(safe-area-inset-top) - env(safe-area-inset-bottom));
+    }
   }
   .nav[data-open='true'] {
     display: flex;
+    animation: menu-in 0.18s ease-out;
   }
   .nav-link {
     padding: 14px 4px;
+    min-height: 48px;
+    text-align: left;
     border-top: 1px solid var(--line);
     font-size: 1.1rem;
   }
@@ -1194,9 +1268,23 @@ tbody tr:last-child td {
     margin: 12px 0 0;
     align-self: flex-start;
   }
-  .nav .btn-small {
+  .nav .nav-join {
     margin-top: 12px;
     min-height: 52px;
+    width: 100%;
+  }
+}
+
+.menu-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  background: rgba(2, 8, 16, 0.65);
+}
+
+@media (min-width: 961px) {
+  .menu-backdrop {
+    display: none;
   }
 }
 
@@ -1230,7 +1318,7 @@ tbody tr:last-child td {
   .hero-lead {
     font-size: 1.1rem;
   }
-  .hero .row > a {
+  .hero .row > * {
     flex: 1 1 100%;
   }
   .logo {

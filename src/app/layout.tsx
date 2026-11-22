@@ -46,6 +46,7 @@ export const viewport: Viewport = {
   ],
   width: 'device-width',
   initialScale: 1,
+  viewportFit: 'cover', // lets the header and footer respect phone notches and home bars
 };
 
 // Applies a saved colour choice before the page paints, so there is no flash.

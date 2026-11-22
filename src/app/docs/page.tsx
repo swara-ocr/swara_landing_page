@@ -34,6 +34,20 @@ export default function DocsIndex() {
             </li>
           ))}
         </ul>
+        <div className="stack g12 rule-top">
+          <h2 className="h3">More about SWAARA</h2>
+          <ul className="bullets">
+            <li>
+              <Link href="/about">About SWAARA</Link>: the problem, voice and languages, phone app screens and the team
+            </li>
+            <li>
+              <Link href="/roadmap">Roadmap and updates</Link>: where the project is now and what comes next
+            </li>
+            <li>
+              <Link href="/contact">Contact us</Link>: questions, schools, organisations and testers
+            </li>
+          </ul>
+        </div>
       </div>
     </main>
   );

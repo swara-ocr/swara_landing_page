@@ -19,13 +19,10 @@ export default function SiteFooter() {
           </p>
         </div>
         <nav className="footer-nav" aria-label="Footer">
-          <Link href="/docs">Documentation</Link>
+          <Link href="/docs">Docs</Link>
           <Link href="/privacy">Privacy</Link>
-          <Link href="/accessibility">Accessibility statement</Link>
-          <a href={SITE.githubUrl} rel="noopener noreferrer">
-            GitHub
-          </a>
-          <Link href="/#join">Join the waitlist</Link>
+          <Link href="/accessibility">Accessibility</Link>
+          <Link href="/contact">Contact</Link>
         </nav>
       </div>
       <div className="wrap footer-bottom">
