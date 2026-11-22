@@ -23,6 +23,7 @@ export default function SiteFooter() {
           <Link href="/privacy">Privacy</Link>
           <Link href="/accessibility">Accessibility</Link>
           <Link href="/contact">Contact</Link>
+          <Link href="/admin">Team</Link>
         </nav>
       </div>
       <div className="wrap footer-bottom">

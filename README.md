@@ -50,15 +50,15 @@ All the email code and templates are kept. To switch it on later, set `EMAIL_ENA
 
 ## Admin page
 
-Set `ADMIN_PASSWORD` and `ADMIN_SECRET` (generate with `openssl rand -hex 32`), then go to `/admin/login`. From there you can read messages, mark them answered, download the waitlist as CSV, remove a person from the waitlist, and post short updates that appear on `/roadmap` within a minute. The page is hidden from search engines and signed out after 12 hours.
+Go to `/admin` (there is a small "Team" link in the footer). The password is set in `src/lib/auth.ts`; edit it there to change it. `ADMIN_SECRET` is optional and signs the login cookie (generate with `openssl rand -hex 32`). From there you can read messages, mark them answered, download the waitlist as CSV, remove a person from the waitlist, and post short updates that appear on `/roadmap` within a minute. The page is hidden from search engines and signed out after 12 hours.
 
 ## Deploy to Vercel
 
 1. Push this project to the GitHub repository.
 2. In Vercel, **Add New > Project**, import the repository. The framework is detected as Next.js.
 3. Under **Environment Variables**, add these (Production, and Preview if you want it):
-   - **Required:** `DATABASE_URL`, `DIRECT_URL`, `ADMIN_PASSWORD`, `ADMIN_SECRET`, `NEXT_PUBLIC_SITE_URL`
-   - **Optional:** `EMAIL_ENABLED` and the `SMTP_*`, `MAIL_FROM`, `TEAM_EMAIL` values. Leave them out and email stays off.
+   - **Required:** `DATABASE_URL`, `DIRECT_URL`, `NEXT_PUBLIC_SITE_URL`
+   - **Optional:** `ADMIN_SECRET`, `EMAIL_ENABLED` and the `SMTP_*`, `MAIL_FROM`, `TEAM_EMAIL` values. Leave them out and email stays off.
    - Vercel only applies new or changed variables to **new deployments**, so redeploy after changing them.
 4. Deploy. The build command (`prisma generate && next build`) is already in `package.json`.
 5. Under **Settings > Domains**, add `www.swaara.lk` and `swaara.lk`. Vercel shows the exact DNS records to create at the registrar. Make one the redirect to the other.

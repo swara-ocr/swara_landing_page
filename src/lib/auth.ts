@@ -4,24 +4,24 @@ import crypto from 'node:crypto';
 export const ADMIN_COOKIE = 'swaara_admin';
 const SESSION_HOURS = 12;
 
+// The team admin password. It lives here on purpose, so the admin page works with no setup.
+// To change it, edit this line and push. (Anyone who can read this repository can read it.)
+const ADMIN_PASSWORD = 'Swara@123';
+
+// Signs the login cookie. If ADMIN_SECRET is set in the environment it is used (better, because it
+// is not in the code); otherwise a built-in value is used so the login still works.
 function secret(): string {
-  return process.env.ADMIN_SECRET || '';
+  const fromEnv = process.env.ADMIN_SECRET || '';
+  return fromEnv.length >= 16 ? fromEnv : `swaara-admin-session-${ADMIN_PASSWORD}`;
 }
 
 function sign(payload: string): string {
   return crypto.createHmac('sha256', secret()).update(payload).digest('hex');
 }
 
-/** The admin page is disabled until both ADMIN_PASSWORD and a long ADMIN_SECRET are set. */
-export function adminConfigured(): boolean {
-  return !!process.env.ADMIN_PASSWORD && secret().length >= 16;
-}
-
 export function checkPassword(input: string): boolean {
-  const expected = process.env.ADMIN_PASSWORD || '';
-  if (!expected) return false;
   const a = crypto.createHash('sha256').update(input).digest();
-  const b = crypto.createHash('sha256').update(expected).digest();
+  const b = crypto.createHash('sha256').update(ADMIN_PASSWORD).digest();
   return crypto.timingSafeEqual(a, b);
 }
 
@@ -31,7 +31,7 @@ export function makeToken(): string {
 }
 
 export function verifyToken(token?: string | null): boolean {
-  if (!token || !adminConfigured()) return false;
+  if (!token) return false;
   const [expires, signature] = token.split('.');
   if (!expires || !signature) return false;
   const a = Buffer.from(signature);

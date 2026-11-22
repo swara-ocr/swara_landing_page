@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { ADMIN_COOKIE, SESSION_SECONDS, adminConfigured, checkPassword, makeToken } from '@/lib/auth';
+import { ADMIN_COOKIE, SESSION_SECONDS, checkPassword, makeToken } from '@/lib/auth';
 import { clientIp, rateLimit } from '@/lib/rateLimit';
 
 export const runtime = 'nodejs';
@@ -7,7 +7,6 @@ export const runtime = 'nodejs';
 export async function POST(req: Request) {
   const back = (error: string) => NextResponse.redirect(new URL(`/admin/login?error=${error}`, req.url), 303);
 
-  if (!adminConfigured()) return back('setup');
   if (!rateLimit(`admin:${clientIp(req)}`, 8, 15 * 60 * 1000)) return back('many');
 
   const form = await req.formData();
