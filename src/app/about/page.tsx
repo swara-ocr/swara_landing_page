@@ -301,13 +301,16 @@ export default function AboutPage() {
           <ul className="team list-reset">
             {TEAM.map((m) => (
               <li key={m.name} className="card member">
-                <span className="avatar" aria-hidden="true">
-                  {m.initial}
-                </span>
-                <span>
-                  <strong className="block">{m.name}</strong>
-                  <span className="muted">{m.role}</span>
-                </span>
+                {m.photo ? (
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img className="avatar avatar-photo" src={m.photo} alt={`Photo of ${m.name}`} width={120} height={120} loading="lazy" />
+                ) : (
+                  <span className="avatar" aria-hidden="true">
+                    {m.initial}
+                  </span>
+                )}
+                <strong className="member-name">{m.name}</strong>
+                <span className="muted member-role">{m.role}</span>
               </li>
             ))}
           </ul>

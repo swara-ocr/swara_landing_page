@@ -34,7 +34,9 @@ export const SOCIAL = [
   { name: 'LinkedIn', url: 'https://www.linkedin.com/company/swara-reads/' },
 ];
 
-export const TEAM = [
+// `photo` is optional: a file in /public/team (for example '/team/nethuli.jpg'). Without it the card
+// shows the person's initial in a circle.
+export const TEAM: { name: string; role: string; initial: string; photo?: string }[] = [
   { name: 'Pasindu Heshan Kavinda', role: 'Product Owner / Developer', initial: 'P' },
   { name: 'Nethuli Sellahewa', role: 'Developer, UI / UX and Testing', initial: 'N' },
   { name: 'Thimithri Vidanapathirana', role: 'Scrum Master / Developer', initial: 'T' },
