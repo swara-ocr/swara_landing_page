@@ -1,0 +1,52 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+// People who joined the waitlist from the website.
+model WaitlistSignup {
+  id                 String    @id @default(cuid())
+  email              String    @unique
+  interests          String[]
+  language           String    @default("en")
+  consent            Boolean   @default(true)
+  consentAt          DateTime  @default(now())
+  unsubscribeToken   String    @unique @default(cuid())
+  unsubscribedAt     DateTime?
+  confirmationSentAt DateTime?
+  createdAt          DateTime  @default(now())
+
+  @@index([createdAt])
+}
+
+// Messages from the contact and "schools, organisations and testers" form.
+model ContactMessage {
+  id           String    @id @default(cuid())
+  name         String
+  email        String
+  organisation String?
+  kind         String    @default("general") // general | testing | school
+  message      String
+  consent      Boolean   @default(true)
+  createdAt    DateTime  @default(now())
+  handledAt    DateTime?
+
+  @@index([createdAt])
+}
+
+// Short news and roadmap posts shown on the home page. Managed from /admin.
+model SiteUpdate {
+  id          String   @id @default(cuid())
+  title       String
+  body        String
+  published   Boolean  @default(true)
+  publishedAt DateTime @default(now())
+  createdAt   DateTime @default(now())
+
+  @@index([publishedAt])
+}
