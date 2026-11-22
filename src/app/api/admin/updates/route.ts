@@ -25,6 +25,9 @@ export async function POST(req: NextRequest) {
       if (current) await db.siteUpdate.update({ where: { id }, data: { published: !current.published } });
     } else if (intent === 'delete' && id) {
       await db.siteUpdate.deleteMany({ where: { id } });
+    } else if (intent === 'remove-signup' && id) {
+      // Removes the person from the waitlist entirely (for example when they ask to be removed).
+      await db.waitlistSignup.deleteMany({ where: { id } });
     } else if (intent === 'handled' && id) {
       await db.contactMessage.updateMany({ where: { id, handledAt: null }, data: { handledAt: new Date() } });
     }

@@ -1,6 +1,8 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
+import { notFound } from 'next/navigation';
 import { db } from '@/lib/db';
+import { emailEnabled } from '@/lib/email';
 
 export const metadata: Metadata = {
   title: 'Unsubscribe',
@@ -10,6 +12,9 @@ export const metadata: Metadata = {
 export const dynamic = 'force-dynamic';
 
 export default async function UnsubscribePage({ params }: { params: { token: string } }) {
+  // There are no unsubscribe links while email is off.
+  if (!emailEnabled()) notFound();
+
   if (params.token === 'done') {
     return (
       <main id="main" className="sec">

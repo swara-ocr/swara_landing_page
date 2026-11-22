@@ -6,10 +6,7 @@ import { contactAcknowledgement, sendMail, teamAddress, teamContactNotice } from
 
 export const runtime = 'nodejs';
 
-const SUCCESS = {
-  ok: true,
-  message: 'Thank you. We have received your message and will reply by email.',
-};
+const SUCCESS = { ok: true, message: 'Thanks, we have your message.' };
 
 function fail(error: string, status: number) {
   return NextResponse.json({ ok: false, error }, { status });

@@ -31,7 +31,7 @@ export default function ContactForm() {
       const json = (await res.json()) as { ok: boolean; message?: string; error?: string };
       if (json.ok) {
         setStatus('ok');
-        setMessage(json.message ?? 'Thank you. We will reply by email.');
+        setMessage(json.message ?? 'Thanks, we have your message.');
         form.reset();
       } else {
         setStatus('error');

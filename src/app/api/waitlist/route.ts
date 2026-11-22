@@ -1,15 +1,13 @@
 import { NextResponse } from 'next/server';
 import { db } from '@/lib/db';
-import { cleanText, isEmail, INTERESTS } from '@/lib/validate';
+import { cleanText, isEmail, INTERESTS, LANGUAGES, ROLES } from '@/lib/validate';
 import { clientIp, rateLimit } from '@/lib/rateLimit';
 import { sendMail, teamAddress, teamWaitlistNotice, waitlistConfirmation } from '@/lib/email';
 
 export const runtime = 'nodejs';
 
-const SUCCESS = {
-  ok: true,
-  message: 'You are on the list. We have sent a confirmation to your email. If it does not arrive, check your spam folder.',
-};
+// The same answer is given in every success case. It does not promise an email.
+const SUCCESS = { ok: true, message: 'You are on the list.' };
 
 function fail(error: string, status: number) {
   return NextResponse.json({ ok: false, error }, { status });
@@ -32,12 +30,14 @@ export async function POST(req: Request) {
 
   const email = cleanText(body.email, 254).toLowerCase();
   if (!isEmail(email)) return fail('Enter a valid email address, such as name@example.com.', 400);
-  if (body.consent !== true) return fail('Tick the box to agree to receive SWAARA updates.', 400);
+  const role = ROLES.find((r) => r.id === body.role)?.id;
+  if (!role) return fail('Choose the option that describes you best.', 400);
+  if (body.consent !== true) return fail('Tick the box to agree that SWAARA may store your email and contact you.', 400);
 
   const interests = Array.isArray(body.interests)
     ? Array.from(new Set(body.interests.filter((i): i is string => typeof i === 'string' && (INTERESTS as readonly string[]).includes(i))))
     : [];
-  const language = body.language === 'si' ? 'si' : 'en';
+  const language = LANGUAGES.find((l) => l.id === body.language)?.id ?? 'en';
 
   try {
     const existing = await db.waitlistSignup.findUnique({ where: { email } });
@@ -47,14 +47,14 @@ export async function POST(req: Request) {
       if (existing.unsubscribedAt) {
         await db.waitlistSignup.update({
           where: { email },
-          data: { unsubscribedAt: null, interests, language, consent: true, consentAt: new Date() },
+          data: { unsubscribedAt: null, role, interests, language, consent: true, consentAt: new Date() },
         });
       }
       return NextResponse.json(SUCCESS);
     }
 
     const created = await db.waitlistSignup.create({
-      data: { email, interests, language, consent: true, consentAt: new Date() },
+      data: { email, role, interests, language, consent: true, consentAt: new Date() },
     });
 
     const total = await db.waitlistSignup.count({ where: { unsubscribedAt: null } });
@@ -62,7 +62,7 @@ export async function POST(req: Request) {
     const confirmation = waitlistConfirmation(created.unsubscribeToken);
     const [sent] = await Promise.all([
       sendMail({ to: email, ...confirmation, replyTo: teamAddress() }),
-      sendMail({ to: teamAddress(), ...teamWaitlistNotice({ email, interests, language, total }) }),
+      sendMail({ to: teamAddress(), ...teamWaitlistNotice({ email, role, interests, language, total }) }),
     ]);
     if (sent.ok) {
       await db.waitlistSignup.update({ where: { id: created.id }, data: { confirmationSentAt: new Date() } });

@@ -3,7 +3,9 @@ import { redirect } from 'next/navigation';
 import type { ContactMessage, SiteUpdate, WaitlistSignup } from '@prisma/client';
 import { db } from '@/lib/db';
 import { isAdmin } from '@/lib/auth';
-import { interestLabel } from '@/lib/email';
+import { emailEnabled, interestLabel } from '@/lib/email';
+import { languageLabel, roleLabel } from '@/lib/validate';
+import ConfirmButton from '@/components/ConfirmButton';
 
 export const metadata: Metadata = {
   title: 'Team admin',
@@ -19,6 +21,7 @@ function when(date: Date) {
 export default async function AdminPage() {
   if (!isAdmin()) redirect('/admin/login');
 
+  const showEmailStatus = emailEnabled();
   let dbError = '';
   let signups: WaitlistSignup[] = [];
   let messages: ContactMessage[] = [];
@@ -162,20 +165,39 @@ export default async function AdminPage() {
               <thead>
                 <tr>
                   <th scope="col">Email</th>
+                  <th scope="col">I am a</th>
                   <th scope="col">Interested in</th>
                   <th scope="col">Language</th>
+                  <th scope="col">Consent given</th>
                   <th scope="col">Joined</th>
-                  <th scope="col">Status</th>
+                  {showEmailStatus && <th scope="col">Status</th>}
+                  <th scope="col">Remove</th>
                 </tr>
               </thead>
               <tbody>
                 {signups.map((s) => (
                   <tr key={s.id}>
                     <th scope="row">{s.email}</th>
+                    <td>{roleLabel(s.role)}</td>
                     <td>{s.interests.length ? s.interests.map(interestLabel).join(', ') : '-'}</td>
-                    <td>{s.language === 'si' ? 'Sinhala' : 'English'}</td>
+                    <td>{languageLabel(s.language)}</td>
+                    <td>{s.consent ? when(s.consentAt) : 'No'}</td>
                     <td>{when(s.createdAt)}</td>
-                    <td>{s.unsubscribedAt ? 'Unsubscribed' : s.confirmationSentAt ? 'Confirmed by email' : 'Email not sent'}</td>
+                    {showEmailStatus && (
+                      <td>{s.unsubscribedAt ? 'Unsubscribed' : s.confirmationSentAt ? 'Confirmed by email' : 'No email sent'}</td>
+                    )}
+                    <td>
+                      <form method="post" action="/api/admin/updates">
+                        <input type="hidden" name="intent" value="remove-signup" />
+                        <input type="hidden" name="id" value={s.id} />
+                        <ConfirmButton
+                          question={`Remove ${s.email} from the waitlist? This deletes their entry and cannot be undone.`}
+                          className="btn-line btn-small"
+                        >
+                          Remove
+                        </ConfirmButton>
+                      </form>
+                    </td>
                   </tr>
                 ))}
               </tbody>

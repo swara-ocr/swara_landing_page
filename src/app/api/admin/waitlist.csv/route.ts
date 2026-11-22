@@ -1,6 +1,7 @@
 import { NextResponse, type NextRequest } from 'next/server';
 import { db } from '@/lib/db';
 import { ADMIN_COOKIE, verifyToken } from '@/lib/auth';
+import { languageLabel, roleLabel } from '@/lib/validate';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
@@ -18,12 +19,14 @@ export async function GET(req: NextRequest) {
 
   const rows = await db.waitlistSignup.findMany({ orderBy: { createdAt: 'asc' } });
   const lines = [
-    ['email', 'interests', 'language', 'consent_at', 'joined_at', 'unsubscribed_at'].map(cell).join(','),
+    ['email', 'role', 'interests', 'language', 'consent', 'consent_at', 'joined_at', 'unsubscribed_at'].map(cell).join(','),
     ...rows.map((r) =>
       [
         r.email,
+        roleLabel(r.role),
         r.interests.join(' '),
-        r.language,
+        languageLabel(r.language),
+        r.consent ? 'yes' : 'no',
         r.consentAt.toISOString(),
         r.createdAt.toISOString(),
         r.unsubscribedAt ? r.unsubscribedAt.toISOString() : '',

@@ -1,5 +1,6 @@
 import nodemailer from 'nodemailer';
 import { SITE } from './site';
+import { languageLabel, roleLabel } from './validate';
 
 type Mail = {
   to: string | string[];
@@ -31,13 +32,20 @@ function getTransport(): nodemailer.Transporter | null {
   return transporter;
 }
 
+/**
+ * Email is off unless EMAIL_ENABLED is exactly "true". With it off, nothing is sent and no
+ * network call is made. All the email code and templates below stay in place, so switching it
+ * on later only needs EMAIL_ENABLED=true and the SMTP_* variables.
+ */
+export function emailEnabled(): boolean {
+  return process.env.EMAIL_ENABLED === 'true';
+}
+
 /** Sends one email. Never throws: a mail problem must not break a form submission. */
 export async function sendMail(mail: Mail): Promise<SendResult> {
+  if (!emailEnabled()) return { ok: false, skipped: true };
   const transport = getTransport();
-  if (!transport) {
-    console.warn('[email] SMTP is not configured, so this email was skipped:', mail.subject);
-    return { ok: false, skipped: true };
-  }
+  if (!transport) return { ok: false, skipped: true };
   try {
     await transport.sendMail({
       from: process.env.MAIL_FROM || `SWAARA <${process.env.SMTP_USER}>`,
@@ -119,15 +127,17 @@ export function waitlistConfirmation(token: string): Pick<Mail, 'subject' | 'tex
 /** Sent to the team when someone joins the waitlist. */
 export function teamWaitlistNotice(input: {
   email: string;
+  role: string;
   interests: string[];
   language: string;
   total: number;
 }): Pick<Mail, 'subject' | 'text' | 'html'> {
   const interests = input.interests.length ? input.interests.map(interestLabel).join(', ') : 'not chosen';
-  const language = input.language === 'si' ? 'Sinhala' : 'English';
+  const language = languageLabel(input.language);
   const subject = `New SWAARA waitlist signup (${input.total} total)`;
   const text = [
     `Email: ${input.email}`,
+    `I am a: ${roleLabel(input.role)}`,
     `Interested in: ${interests}`,
     `Language for updates: ${language}`,
     `People on the waitlist now: ${input.total}`,
@@ -135,6 +145,7 @@ export function teamWaitlistNotice(input: {
   const html = shell(
     'New waitlist signup',
     `<p style="margin:0 0 6px"><strong>Email:</strong> ${esc(input.email)}</p>
+<p style="margin:0 0 6px"><strong>I am a:</strong> ${esc(roleLabel(input.role))}</p>
 <p style="margin:0 0 6px"><strong>Interested in:</strong> ${esc(interests)}</p>
 <p style="margin:0 0 6px"><strong>Language for updates:</strong> ${language}</p>
 <p style="margin:0"><strong>On the waitlist now:</strong> ${input.total}</p>`,

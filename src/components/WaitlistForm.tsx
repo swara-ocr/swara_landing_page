@@ -1,6 +1,7 @@
 'use client';
 
 import { FormEvent, useState } from 'react';
+import { LANGUAGES, ROLES } from '@/lib/validate';
 
 type Status = 'idle' | 'sending' | 'ok' | 'error';
 
@@ -26,6 +27,7 @@ export default function WaitlistForm() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           email: data.get('email'),
+          role: data.get('role'),
           interests: data.getAll('interest'),
           language: data.get('language'),
           consent: data.get('consent') === 'on',
@@ -57,7 +59,17 @@ export default function WaitlistForm() {
       </div>
 
       <fieldset className="fieldset">
-        <legend className="fw7">I am interested in</legend>
+        <legend className="fw7">I am a...</legend>
+        {ROLES.map((r) => (
+          <label key={r.id} htmlFor={`wl-role-${r.id}`} className="choice">
+            <input id={`wl-role-${r.id}`} type="radio" name="role" value={r.id} required />
+            {r.label}
+          </label>
+        ))}
+      </fieldset>
+
+      <fieldset className="fieldset">
+        <legend className="fw7">Interested in</legend>
         {OPTIONS.map((o) => (
           <label key={o.id} htmlFor={`wl-${o.id}`} className="choice">
             <input id={`wl-${o.id}`} type="checkbox" name="interest" value={o.id} />
@@ -67,17 +79,13 @@ export default function WaitlistForm() {
       </fieldset>
 
       <fieldset className="fieldset fieldset-row">
-        <legend className="fw7">Language for updates</legend>
-        <label htmlFor="wl-en" className="choice">
-          <input id="wl-en" type="radio" name="language" value="en" defaultChecked />
-          English
-        </label>
-        <label htmlFor="wl-si" className="choice">
-          <input id="wl-si" type="radio" name="language" value="si" />
-          <span lang="si" className="sinhala">
-            සිංහල
-          </span>
-        </label>
+        <legend className="fw7">Preferred language</legend>
+        {LANGUAGES.map((l) => (
+          <label key={l.id} htmlFor={`wl-lang-${l.id}`} className="choice">
+            <input id={`wl-lang-${l.id}`} type="radio" name="language" value={l.id} defaultChecked={l.id === 'en'} />
+            {l.label}
+          </label>
+        ))}
       </fieldset>
 
       {/* Honeypot: hidden from people, tempting to bots. */}
@@ -86,11 +94,13 @@ export default function WaitlistForm() {
         <input id="wl-website" name="website" type="text" tabIndex={-1} autoComplete="off" />
       </div>
 
+      <p className="muted small">Under 18? Please ask a parent, guardian or teacher to sign up for you.</p>
+
       <label htmlFor="wl-consent" className="choice choice-top">
         <input id="wl-consent" type="checkbox" name="consent" required />
         <span>
-          I agree to receive occasional SWAARA project updates by email. I can unsubscribe at any time. See the{' '}
-          <a href="/privacy">privacy page</a>.
+          I agree that SWAARA may store my email and contact me about the project. It is not shared. I can ask to be
+          removed at any time. See the <a href="/privacy">privacy page</a>.
         </span>
       </label>
 

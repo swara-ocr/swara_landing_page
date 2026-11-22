@@ -358,7 +358,7 @@ export const DOCS: Doc[] = [
       { t: 'h3', text: 'Can I use SWAARA now?' },
       {
         t: 'p',
-        text: 'Not yet. SWAARA is in development as a university group project. Join the waitlist and we will email you about progress and testing.',
+        text: 'Not yet. SWAARA is in development as a university group project. Join the waitlist and we will contact you about progress and testing.',
       },
       { t: 'h3', text: 'How much will it cost?' },
       {

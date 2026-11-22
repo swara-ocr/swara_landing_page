@@ -12,8 +12,9 @@ datasource db {
 model WaitlistSignup {
   id                 String    @id @default(cuid())
   email              String    @unique
+  role               String    @default("other") // student | low-vision | teacher | family | organisation | other
   interests          String[]
-  language           String    @default("en")
+  language           String    @default("en") // en | si | both
   consent            Boolean   @default(true)
   consentAt          DateTime  @default(now())
   unsubscribeToken   String    @unique @default(cuid())
