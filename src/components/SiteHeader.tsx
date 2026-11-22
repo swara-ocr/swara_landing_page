@@ -29,10 +29,11 @@ export default function SiteHeader() {
   useEffect(() => {
     if (!open) return;
 
+    // Lock scrolling on the page root only. Do NOT also set overflow on <body>: that turns the body
+    // into its own scroll box and the sticky header stops sticking to the screen.
     const html = document.documentElement;
-    const previous = { html: html.style.overflow, body: document.body.style.overflow };
+    const previousOverflow = html.style.overflow;
     html.style.overflow = 'hidden';
-    document.body.style.overflow = 'hidden';
 
     const behind = Array.from(document.querySelectorAll('.skip, main, footer'));
     behind.forEach((el) => el.setAttribute('inert', ''));
@@ -69,8 +70,7 @@ export default function SiteHeader() {
     document.addEventListener('keydown', onKey);
     query.addEventListener('change', onWide);
     return () => {
-      html.style.overflow = previous.html;
-      document.body.style.overflow = previous.body;
+      html.style.overflow = previousOverflow;
       behind.forEach((el) => el.removeAttribute('inert'));
       document.removeEventListener('keydown', onKey);
       query.removeEventListener('change', onWide);

@@ -1236,21 +1236,28 @@ tbody tr:last-child td {
     align-items: center;
     justify-content: center;
   }
-  /* The links drop below the logo row as one tidy list. */
+  /* The list floats over the page, directly under the header bar. It is out of the normal flow, so
+     opening it never makes the page taller or moves anything. */
   .nav {
     display: none;
-    flex: 1 0 100%;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
     flex-direction: column;
     align-items: stretch;
     gap: 0;
-    padding-bottom: 12px;
-    max-height: calc(100vh - 96px);
+    padding: 0 max(20px, env(safe-area-inset-right)) 12px max(20px, env(safe-area-inset-left));
+    background: var(--bg);
+    border-bottom: 1px solid var(--line);
+    box-shadow: 0 18px 30px rgba(0, 0, 0, 0.35);
+    max-height: calc(100vh - 80px);
     overflow-y: auto;
     overscroll-behavior: contain;
   }
   @supports (height: 100dvh) {
     .nav {
-      max-height: calc(100dvh - 96px - env(safe-area-inset-top) - env(safe-area-inset-bottom));
+      max-height: calc(100dvh - 80px - env(safe-area-inset-top));
     }
   }
   .nav[data-open='true'] {
