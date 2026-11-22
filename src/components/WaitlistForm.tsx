@@ -1,6 +1,6 @@
 'use client';
 
-import { FormEvent, useState } from 'react';
+import { FormEvent, useEffect, useState } from 'react';
 import { LANGUAGES, ROLES } from '@/lib/validate';
 
 type Status = 'idle' | 'sending' | 'ok' | 'error';
@@ -13,6 +13,10 @@ const OPTIONS = [
 
 export default function WaitlistForm() {
   const [status, setStatus] = useState<Status>('idle');
+  // Until the page's JavaScript is running, a submit would be a plain browser GET that puts the
+  // email address in the URL. Keeping the button disabled until then prevents that.
+  const [ready, setReady] = useState(false);
+  useEffect(() => setReady(true), []);
   const [message, setMessage] = useState('');
 
   async function onSubmit(event: FormEvent<HTMLFormElement>) {
@@ -104,7 +108,7 @@ export default function WaitlistForm() {
         </span>
       </label>
 
-      <button type="submit" className="btn" disabled={status === 'sending'}>
+      <button type="submit" className="btn" disabled={!ready || status === 'sending'}>
         {status === 'sending' ? 'Sending…' : 'Join the waitlist'}
       </button>
 

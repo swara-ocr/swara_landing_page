@@ -1,11 +1,15 @@
 'use client';
 
-import { FormEvent, useState } from 'react';
+import { FormEvent, useEffect, useState } from 'react';
 
 type Status = 'idle' | 'sending' | 'ok' | 'error';
 
 export default function ContactForm() {
   const [status, setStatus] = useState<Status>('idle');
+  // Until the page's JavaScript is running, a submit would be a plain browser GET that puts the
+  // email address in the URL. Keeping the button disabled until then prevents that.
+  const [ready, setReady] = useState(false);
+  useEffect(() => setReady(true), []);
   const [message, setMessage] = useState('');
 
   async function onSubmit(event: FormEvent<HTMLFormElement>) {
@@ -96,7 +100,7 @@ export default function ContactForm() {
         </span>
       </label>
 
-      <button type="submit" className="btn" disabled={status === 'sending'}>
+      <button type="submit" className="btn" disabled={!ready || status === 'sending'}>
         {status === 'sending' ? 'Sending…' : 'Send message'}
       </button>
 
