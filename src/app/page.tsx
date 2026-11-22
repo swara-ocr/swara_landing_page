@@ -1,6 +1,10 @@
+import type { Metadata } from 'next';
+import Image from 'next/image';
 import Link from 'next/link';
-import { SITE } from '@/lib/site';
+import { PROTOTYPE_SCREENS, SITE } from '@/lib/site';
 import Hero from '@/components/Hero';
+import SocialLinks from '@/components/SocialLinks';
+import TeamGrid from '@/components/TeamGrid';
 import WaitlistForm from '@/components/WaitlistForm';
 import {
   Art,
@@ -8,10 +12,17 @@ import {
   PRODUCT_LAPTOP,
   PRODUCT_PHONE,
   PRODUCT_STATION,
+  PROBLEM_HAND,
+  PROBLEM_SQUARE,
   STEP_1,
   STEP_4,
   STEP_PRESS,
 } from '@/components/art';
+
+export const metadata: Metadata = {
+  // The title and description come from the site-wide defaults in layout.tsx.
+  alternates: { canonical: '/' },
+};
 
 // A short, picture-led page. The detail lives on /docs, /about and /roadmap.
 
@@ -57,6 +68,47 @@ export default function Home() {
         </div>
       </section>
 
+      {/* PROBLEM AND SOLUTION */}
+      <section id="problem" className="sec" aria-labelledby="problem-h">
+        <div className="wrap split split-center">
+          <div className="stack g16">
+            <h2 id="problem-h" className="h2">
+              Framing a page is the hard part
+            </h2>
+            <p className="lead">Reading starts with a good photo. Without sight, lining up the page is where it fails.</p>
+            <p className="muted">
+              In one published study, 9 of 12 blind and low-vision participants found framing a photo challenging (
+              <a href="https://arxiv.org/abs/2408.03303" rel="noopener noreferrer">
+                arXiv 2408.03303
+              </a>
+              ).
+            </p>
+            <h3 className="h3">How SWAARA solves it</h3>
+            <p>A fixed plate keeps every page in frame, and you control it all by voice.</p>
+          </div>
+          <div className="card pad compare">
+            <figure className="stack g8 fig">
+              <Art
+                inner={PROBLEM_HAND}
+                viewBox="0 0 160 190"
+                className="scene"
+                label="A page seen at a slant, cut off at the edge, with glare, as a hand-held phone often sees it"
+              />
+              <figcaption className="muted small">Hand-held: tilted, cut off, glare.</figcaption>
+            </figure>
+            <figure className="stack g8 fig">
+              <Art
+                inner={PROBLEM_SQUARE}
+                viewBox="0 0 160 190"
+                className="scene"
+                label="A page sitting square in a corner stop, fully in frame and evenly lit"
+              />
+              <figcaption className="muted small">SWAARA: square, every time.</figcaption>
+            </figure>
+          </div>
+        </div>
+      </section>
+
       {/* HOW IT WORKS */}
       <section id="how" className="sec sec-alt" aria-labelledby="how-h">
         <div className="wrap stack g40">
@@ -82,8 +134,37 @@ export default function Home() {
         </div>
       </section>
 
+      {/* KEY FEATURES */}
+      <section id="features" className="sec" aria-labelledby="features-h">
+        <div className="wrap stack g32">
+          <div className="stack g8">
+            <h2 id="features-h" className="h2">
+              Key features
+            </h2>
+            <p className="eyebrow">Design mock-up</p>
+          </div>
+          <ul className="shots list-reset">
+            {PROTOTYPE_SCREENS.map((shot) => (
+              <li key={shot.src}>
+                <figure className="stack g12 shot">
+                  <Image
+                    className="shot-img"
+                    src={shot.src}
+                    alt={shot.alt}
+                    width={shot.width}
+                    height={shot.height}
+                    sizes="(max-width: 560px) 70vw, 270px"
+                  />
+                  <figcaption className="muted">{shot.caption}</figcaption>
+                </figure>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
       {/* PRODUCTS */}
-      <section id="products" className="sec" aria-labelledby="products-h">
+      <section id="products" className="sec sec-alt" aria-labelledby="products-h">
         <div className="wrap stack g40">
           <h2 id="products-h" className="h2">
             Three ways to read
@@ -104,7 +185,7 @@ export default function Home() {
       </section>
 
       {/* VOICE AND LANGUAGES */}
-      <section id="languages" className="sec sec-alt" aria-labelledby="voice-h">
+      <section id="languages" className="sec" aria-labelledby="voice-h">
         <div className="wrap split split-center">
           <div className="stack g20">
             <h2 id="voice-h" className="h2">
@@ -139,21 +220,48 @@ export default function Home() {
         </div>
       </section>
 
+      {/* TEAM */}
+      <section id="team" className="sec" aria-labelledby="team-h">
+        <div className="wrap stack g32">
+          <div className="stack g8">
+            <h2 id="team-h" className="h2">
+              The team
+            </h2>
+            <p className="lead">Group CS-01, IIT Sri Lanka with the University of Westminster.</p>
+          </div>
+          <TeamGrid />
+        </div>
+      </section>
+
       {/* WAITLIST */}
-      <section id="join" className="sec" aria-labelledby="join-h">
+      <section id="join" className="sec sec-alt" aria-labelledby="join-h">
         <div className="wrap split">
           <div className="stack g20">
             <h2 id="join-h" className="h2">
               Join the waitlist
             </h2>
             <p className="lead">Get updates when SWAARA is ready to try. Your email is used for nothing else.</p>
-            <p>
-              <Link href="/contact" className="tap">
-                Contact us
-              </Link>
-            </p>
           </div>
           <WaitlistForm />
+        </div>
+      </section>
+
+      {/* CONTACT */}
+      <section id="contact" className="sec" aria-labelledby="contact-h">
+        <div className="wrap split">
+          <div className="stack g12">
+            <h2 id="contact-h" className="h2">
+              Contact us
+            </h2>
+            <p>
+              Write to <a href={`mailto:${SITE.teamEmail}`}>{SITE.teamEmail}</a>, or use the{' '}
+              <Link href="/contact">contact form</Link>.
+            </p>
+            <p className="muted">
+              We use your details only to reply. <Link href="/privacy">Read our privacy notice</Link>.
+            </p>
+          </div>
+          <SocialLinks id="follow-us-page" />
         </div>
       </section>
     </main>

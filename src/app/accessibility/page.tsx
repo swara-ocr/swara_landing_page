@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { SITE } from '@/lib/site';
 
 export const metadata: Metadata = {
+  alternates: { canonical: '/accessibility' },
   title: 'Accessibility statement',
   description: 'How this website is built to work for people who are blind or have low vision, and what we have not tested yet.',
 };

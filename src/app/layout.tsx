@@ -3,6 +3,7 @@ import { Atkinson_Hyperlegible, Bricolage_Grotesque, Noto_Sans_Sinhala } from 'n
 import './globals.css';
 import SiteHeader from '@/components/SiteHeader';
 import SiteFooter from '@/components/SiteFooter';
+import { Analytics } from '@vercel/analytics/next';
 import { SITE } from '@/lib/site';
 
 const body = Atkinson_Hyperlegible({
@@ -34,9 +35,10 @@ export const metadata: Metadata = {
     siteName: 'SWAARA',
     title: `SWAARA: ${SITE.tagline}`,
     description: SITE.description,
-    url: SITE.url,
+    locale: 'en_GB',
   },
-  twitter: { card: 'summary', title: `SWAARA: ${SITE.tagline}`, description: SITE.description },
+  // The preview picture itself comes from opengraph-image.tsx and twitter-image.tsx.
+  twitter: { card: 'summary_large_image', title: `SWAARA: ${SITE.tagline}`, description: SITE.description },
 };
 
 export const viewport: Viewport = {
@@ -65,6 +67,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <SiteHeader />
         {children}
         <SiteFooter />
+        {/* Vercel Web Analytics: cookieless page-view counts. Switched on in the Vercel dashboard. */}
+        <Analytics />
       </body>
     </html>
   );

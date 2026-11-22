@@ -4,6 +4,7 @@ import { DOCS } from '@/lib/docs';
 import { Icon } from '@/components/art';
 
 export const metadata: Metadata = {
+  alternates: { canonical: '/docs' },
   title: 'Documentation',
   description: 'What SWAARA is, how it reads a page, how to use each product, and how we handle privacy and testing.',
 };

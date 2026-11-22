@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { SITE } from '@/lib/site';
 
 export const metadata: Metadata = {
+  alternates: { canonical: '/privacy' },
   title: 'Privacy',
   description: 'What this website collects when you join the SWAARA waitlist or send us a message, and your choices.',
 };
@@ -48,10 +49,17 @@ export default function PrivacyPage() {
             <strong>Technical records:</strong> our website host keeps ordinary server logs, such as the time of a
             request and your IP address, to keep the site running and secure.
           </p>
+          <p>
+            <strong>Anonymous visit statistics:</strong> we use Vercel Web Analytics to count visits. It does not use
+            cookies. It records which page was viewed, the page you came from (the referrer), your approximate country,
+            and your browser, operating system and device type. Vercel describes it as not storing your IP address and as
+            not building a profile of you. We use it only to see how many people visit and which pages they read. It is
+            not used for advertising, and it is not linked to your email address or to anything you send us.
+          </p>
           <p className="note">
             We do not ask for names, phone numbers, documents, or any health or medical information on the waitlist, and
-            we ask you not to send any. SWAARA gives no medical advice. We do not add advertising or analytics trackers.
-            The only thing this website stores in your browser is your light or dark colour choice.
+            we ask you not to send any. SWAARA gives no medical advice. We do not add advertising trackers. The only
+            thing this website stores in your browser is your light or dark colour choice.
           </p>
 
           <h2 className="prose-h">Why we collect it</h2>
@@ -59,6 +67,7 @@ export default function PrivacyPage() {
             <li>To contact you about the SWAARA project, by email, if you asked us to. We use it for nothing else.</li>
             <li>To reply to your message, and to arrange testing if you offered to help.</li>
             <li>To keep a record that you agreed.</li>
+            <li>To see, in anonymous totals, how many people visit the site and which pages are useful.</li>
           </ul>
           <p>
             We rely on your consent, which you give by ticking the box on each form. We do not sell or share your details,
@@ -68,8 +77,9 @@ export default function PrivacyPage() {
 
           <h2 className="prose-h">Who can see it</h2>
           <p>
-            Members of the SWAARA team can see waitlist entries and messages. The website is hosted on Vercel and the
-            data is stored in a Neon database, and these services process it for us. If we email you, the email comes
+            Members of the SWAARA team can see waitlist entries and messages. The website is hosted on Vercel, which also
+            provides the anonymous visit statistics, and the data is stored in a Neon database. These services process
+            it for us. If we email you, the email comes
             from the team email account.
           </p>
 

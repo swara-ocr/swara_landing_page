@@ -1,8 +1,10 @@
 import type { Metadata } from 'next';
 import ContactForm from '@/components/ContactForm';
+import SocialLinks from '@/components/SocialLinks';
 import { SITE } from '@/lib/site';
 
 export const metadata: Metadata = {
+  alternates: { canonical: '/contact' },
   title: 'Contact us',
   description: 'Write to the SWAARA team: questions, schools, organisations and people who would like to help test.',
 };
@@ -20,6 +22,7 @@ export default function ContactPage() {
           <p className="muted">
             You can also write to us at <a href={`mailto:${SITE.teamEmail}`}>{SITE.teamEmail}</a>.
           </p>
+          <SocialLinks id="follow-us-contact" />
         </div>
         <ContactForm />
       </div>

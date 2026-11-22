@@ -27,13 +27,17 @@ export default async function AdminPage() {
   let messages: ContactMessage[] = [];
   let updates: SiteUpdate[] = [];
   let active = 0;
+  let totalSignups = 0;
+  let totalMessages = 0;
 
   try {
-    [signups, messages, updates, active] = await Promise.all([
+    [signups, messages, updates, active, totalSignups, totalMessages] = await Promise.all([
       db.waitlistSignup.findMany({ orderBy: { createdAt: 'desc' }, take: 300 }),
       db.contactMessage.findMany({ orderBy: { createdAt: 'desc' }, take: 100 }),
       db.siteUpdate.findMany({ orderBy: { publishedAt: 'desc' }, take: 50 }),
       db.waitlistSignup.count({ where: { unsubscribedAt: null } }),
+      db.waitlistSignup.count(),
+      db.contactMessage.count(),
     ]);
   } catch (error) {
     console.error('[admin] database error:', error);
@@ -56,12 +60,16 @@ export default async function AdminPage() {
 
         <ul className="stats list-reset">
           <li className="card pad">
-            <span className="stat-n">{active}</span>
-            <span className="muted">on the waitlist</span>
+            <span className="stat-n">{totalSignups}</span>
+            <span className="muted">
+              waitlist signups{totalSignups !== active ? ` (${active} still subscribed)` : ''}
+            </span>
           </li>
           <li className="card pad">
-            <span className="stat-n">{messages.filter((m) => !m.handledAt).length}</span>
-            <span className="muted">messages to answer</span>
+            <span className="stat-n">{totalMessages}</span>
+            <span className="muted">
+              contact messages ({messages.filter((m) => !m.handledAt).length} to answer)
+            </span>
           </li>
           <li className="card pad">
             <span className="stat-n">{updates.filter((u) => u.published).length}</span>

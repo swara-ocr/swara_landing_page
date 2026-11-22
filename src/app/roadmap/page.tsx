@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { db } from '@/lib/db';
 
 export const metadata: Metadata = {
+  alternates: { canonical: '/roadmap' },
   title: 'Roadmap and updates',
   description: 'Where SWAARA is now, what comes next, and the latest project updates.',
 };

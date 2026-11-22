@@ -1,8 +1,10 @@
 import type { Metadata } from 'next';
-import { SITE, SOCIAL, TEAM } from '@/lib/site';
+import SocialLinks from '@/components/SocialLinks';
+import TeamGrid from '@/components/TeamGrid';
 import { APP_FIND, APP_READ, Art, Icon, PROBLEM_HAND, PROBLEM_SQUARE } from '@/components/art';
 
 export const metadata: Metadata = {
+  alternates: { canonical: '/about' },
   title: 'About SWAARA',
   description:
     'The problem SWAARA solves, how its voice and languages work, the phone app screens, and the team behind it.',
@@ -298,36 +300,8 @@ export default function AboutPage() {
               Group CS-01, Software Development Group Project, IIT Sri Lanka and the University of Westminster.
             </p>
           </div>
-          <ul className="team list-reset">
-            {TEAM.map((m) => (
-              <li key={m.name} className="card member">
-                {m.photo ? (
-                  // eslint-disable-next-line @next/next/no-img-element
-                  <img className="avatar avatar-photo" src={m.photo} alt={`Photo of ${m.name}`} width={120} height={120} loading="lazy" />
-                ) : (
-                  <span className="avatar" aria-hidden="true">
-                    {m.initial}
-                  </span>
-                )}
-                <strong className="member-name">{m.name}</strong>
-                <span className="muted member-role">{m.role}</span>
-              </li>
-            ))}
-          </ul>
-          <ul className="social list-reset" aria-label="SWAARA online">
-            <li>
-              <a href={SITE.githubUrl} target="_blank" rel="noopener noreferrer">
-                GitHub
-              </a>
-            </li>
-            {SOCIAL.map((s) => (
-              <li key={s.name}>
-                <a href={s.url} target="_blank" rel="noopener noreferrer" aria-label={`SWAARA on ${s.name} (opens in a new tab)`}>
-                  {s.name}
-                </a>
-              </li>
-            ))}
-          </ul>
+          <TeamGrid />
+          <SocialLinks id="follow-us-page" />
         </div>
       </section>
     </main>

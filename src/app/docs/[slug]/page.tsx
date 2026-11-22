@@ -13,7 +13,7 @@ export function generateStaticParams() {
 export function generateMetadata({ params }: Props): Metadata {
   const doc = getDoc(params.slug);
   if (!doc) return {};
-  return { title: doc.title, description: doc.summary };
+  return { title: doc.title, description: doc.summary, alternates: { canonical: `/docs/${doc.slug}` } };
 }
 
 export default function DocPage({ params }: Props) {

@@ -1,5 +1,6 @@
 import Link from 'next/link';
-import { SITE, SOCIAL } from '@/lib/site';
+import { SITE } from '@/lib/site';
+import SocialLinks from './SocialLinks';
 
 export default function SiteFooter() {
   return (
@@ -9,7 +10,7 @@ export default function SiteFooter() {
           <p className="footer-brand">SWAARA</p>
           <p className="muted">
             <a href={SITE.url} className="plain">
-              www.swaara.lk
+              {SITE.host}
             </a>
           </p>
           <p className="muted">
@@ -17,22 +18,14 @@ export default function SiteFooter() {
               {SITE.teamEmail}
             </a>
           </p>
-          <ul className="social list-reset" aria-label="SWAARA on social media">
-            {SOCIAL.map((s) => (
-              <li key={s.name}>
-                <a href={s.url} target="_blank" rel="noopener noreferrer" aria-label={`SWAARA on ${s.name} (opens in a new tab)`}>
-                  {s.name}
-                </a>
-              </li>
-            ))}
-          </ul>
+          <SocialLinks id="follow-us-footer" />
         </div>
         <nav className="footer-nav" aria-label="Footer">
           <Link href="/docs">Docs</Link>
           <Link href="/privacy">Privacy</Link>
           <Link href="/accessibility">Accessibility</Link>
           <Link href="/contact">Contact</Link>
-          <Link href="/admin">Team</Link>
+          <Link href="/admin">Team sign-in</Link>
         </nav>
       </div>
       <div className="wrap footer-bottom">
