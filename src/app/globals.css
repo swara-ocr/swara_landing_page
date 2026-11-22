@@ -297,6 +297,28 @@ a:hover {
 .site-header {
   background: var(--bg);
   border-bottom: 1px solid var(--line);
+  position: sticky;
+  top: 0;
+  z-index: 50;
+}
+
+.menu-btn {
+  display: none;
+  font: inherit;
+  font-weight: 700;
+  color: var(--text);
+  background: transparent;
+  border: 2px solid var(--line);
+  border-radius: 12px;
+  min-height: 44px;
+  min-width: 88px;
+  padding: 8px 18px;
+  cursor: pointer;
+}
+
+.menu-btn:hover,
+.menu-btn[aria-expanded='true'] {
+  border-color: var(--accent);
 }
 
 .header-row {
@@ -781,7 +803,8 @@ a:hover {
   width: 8px;
   border-radius: 4px;
   background: var(--warm);
-  flex: none;
+  flex: 0 1 8px;
+  min-width: 2px;
 }
 
 .rules {
@@ -1137,15 +1160,117 @@ tbody tr:last-child td {
   color: var(--accent);
 }
 
+/* ---------- Tablets and phones ---------- */
+@media (max-width: 960px) {
+  .header-row {
+    gap: 0 12px;
+  }
+  .menu-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+  /* The links drop below the logo row as one tidy list. */
+  .nav {
+    display: none;
+    flex: 1 0 100%;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    padding-bottom: 12px;
+    max-height: calc(100vh - 80px);
+    max-height: calc(100dvh - 80px);
+    overflow-y: auto;
+  }
+  .nav[data-open='true'] {
+    display: flex;
+  }
+  .nav-link {
+    padding: 14px 4px;
+    border-top: 1px solid var(--line);
+    font-size: 1.1rem;
+  }
+  .nav .theme-btn {
+    margin: 12px 0 0;
+    align-self: flex-start;
+  }
+  .nav .btn-small {
+    margin-top: 12px;
+    min-height: 52px;
+  }
+}
+
 /* ---------- Small screens ---------- */
 @media (max-width: 560px) {
+  body {
+    font-size: 17px;
+  }
+  .wrap {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
   .sec {
-    padding: 64px 0;
+    padding: 56px 0;
   }
   .compare {
     grid-template-columns: 1fr;
   }
   .hero {
-    padding: 48px 0 56px;
+    padding: 36px 0 48px;
+  }
+  .hero-grid {
+    gap: 36px;
+  }
+  .hero-copy {
+    gap: 20px;
+  }
+  .hero-title {
+    font-size: clamp(2.2rem, 10.5vw, 3rem);
+  }
+  .hero-lead {
+    font-size: 1.1rem;
+  }
+  .hero .row > a {
+    flex: 1 1 100%;
+  }
+  .logo {
+    font-size: 1.4rem;
+  }
+  .pad,
+  .form {
+    padding: 20px;
+  }
+  .card {
+    border-radius: 16px;
+  }
+  .split {
+    gap: 32px;
+  }
+  .flow {
+    flex-direction: column;
+  }
+  .flow-step {
+    flex-basis: auto;
+  }
+  .flow-arrow {
+    justify-content: center;
+    transform: rotate(90deg);
+    height: 1.2em;
+  }
+  .docs-layout {
+    gap: 24px;
+  }
+  .docs-nav {
+    flex: 1 1 100%;
+  }
+  .pager-link {
+    flex: 1 1 100%;
+    min-width: 0;
+  }
+  .pager-next {
+    margin-left: 0;
+  }
+  .footer-row {
+    gap: 20px;
   }
 }
