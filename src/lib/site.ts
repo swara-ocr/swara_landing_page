@@ -66,11 +66,11 @@ export const PLACEHOLDER_ROLE = '[ROLE]';
  * shows the person's initial in a circle.
  */
 export const TEAM: { name: string; role: string; initial: string; photo?: string }[] = [
-  { name: 'Pasindu Heshan Kavinda', role: 'Product Owner / Developer', initial: 'P' },
-  { name: 'Nethuli Sellahewa', role: 'Developer, UI / UX and Testing', initial: 'N' },
-  { name: 'Thimithri Vidanapathirana', role: 'Scrum Master / Developer', initial: 'T' },
-  { name: 'Vaitheesvaran Agastigan', role: 'Developer, OCR', initial: 'V' },
-  { name: 'Zayan Ahamed', role: 'Developer, TTS and Hardware', initial: 'Z' },
+  { name: 'Pasindu Heshan Kavinda', role: 'Product Owner / Developer', initial: 'P', photo: '/team/pasindu.jpg' },
+  { name: 'Nethuli Sellahewa', role: 'Developer, UI / UX and Testing', initial: 'N', photo: '/team/nethuli.jpg' },
+  { name: 'Thimithri Vidanapathirana', role: 'Scrum Master / Developer', initial: 'T', photo: '/team/thimithri.jpg' },
+  { name: 'Vaitheesvaran Agastigan', role: 'Developer, OCR', initial: 'V', photo: '/team/vaitheesvaran.jpg' },
+  { name: 'Zayan Ahamed', role: 'Developer, TTS and Hardware', initial: 'Z', photo: '/team/zayan.jpg' },
 ];
 
 /**
