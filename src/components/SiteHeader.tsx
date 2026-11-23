@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
-import { Art, LOGO_INNER } from './art';
+import Image from 'next/image';
 import ThemeToggle from './ThemeToggle';
 
 const LINKS = [
@@ -81,9 +81,10 @@ export default function SiteHeader() {
     <>
       <header className="site-header" ref={header}>
         <div className="wrap header-row">
-          <Link href="/" className="logo" aria-label="SWAARA home" onClick={close}>
-            <Art inner={LOGO_INNER} viewBox="0 0 32 32" className="logo-mark" />
-            SWAARA
+          <Link href="/" className="logo" onClick={close}>
+            {/* The picture's alt text names the link. The visible word repeats it, so it is hidden from screen readers. */}
+            <Image src="/logo/swaara-mark.png" alt="SWAARA, home page" width={44} height={44} className="logo-mark" priority />
+            <span aria-hidden="true">SWAARA</span>
           </Link>
           <button
             ref={button}

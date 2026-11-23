@@ -45,8 +45,16 @@ export default function AboutPage() {
               that is where reading fails, long before any text is recognised.
             </p>
             <p className="muted small">
-              In one published study, 9 of 12 blind or low-vision participants found framing a page challenging (arXiv
-              2408.03303).
+              In one published study (Hong and Kacorri, 2024), 9 of 12 blind and low-vision participants found photo
+              framing challenging (arXiv 2408.03303).
+            </p>
+            <p className="muted small">
+              Reference: Jonggi Hong and Hernisa Kacorri. 2024. Understanding How Blind Users Handle Object Recognition
+              Errors: Strategies and Challenges.{' '}
+              <a href="https://arxiv.org/abs/2408.03303" rel="noopener noreferrer">
+                arXiv:2408.03303
+              </a>
+              .
             </p>
           </div>
           <div className="card pad compare">

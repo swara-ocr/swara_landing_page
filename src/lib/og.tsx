@@ -1,23 +1,24 @@
+import { readFile } from 'node:fs/promises';
+import { join } from 'node:path';
+
 // The picture shown when a link to the site is shared (Facebook, LinkedIn, WhatsApp, X and so on).
 // It is drawn with plain shapes, the same logo as the header, so it needs no image file.
 
 const BG = '#060F1C';
-const ACCENT = '#2AD4F0';
 const WARM = '#FFC94A';
 const TEXT = '#EAF2FA';
 const MUTED = '#A9BCD0';
 
-function Logo({ size }: { size: number }) {
-  return (
-    <svg width={size} height={size} viewBox="0 0 32 32">
-      <circle cx="16" cy="16" r="14" fill="none" stroke={ACCENT} strokeWidth="2.5" />
-      <circle cx="16" cy="16" r="5" fill={ACCENT} />
-      <path d="M16 2v6M16 24v6M2 16h6M24 16h6" stroke={ACCENT} strokeWidth="2.5" strokeLinecap="round" />
-    </svg>
-  );
+/**
+ * Reads the logo mark from /public/logo as a data URL, so the picture below can draw it. The preview
+ * images are made once while the site is built (on Node), so reading the file from disk is fine.
+ */
+export async function loadLogo(): Promise<string> {
+  const file = await readFile(join(process.cwd(), 'public', 'logo', 'swaara-mark.png'));
+  return `data:image/png;base64,${file.toString('base64')}`;
 }
 
-export function OgCard() {
+export function OgCard({ logo }: { logo: string }) {
   return (
     <div
       style={{
@@ -33,7 +34,8 @@ export function OgCard() {
       }}
     >
       <div style={{ display: 'flex', alignItems: 'center' }}>
-        <Logo size={96} />
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img src={logo} width={112} height={112} alt="" style={{ borderRadius: 26 }} />
         <div style={{ display: 'flex', marginLeft: 28, fontSize: 84, fontWeight: 700, letterSpacing: 6 }}>SWAARA</div>
       </div>
 
@@ -60,14 +62,6 @@ export function OgCard() {
       <div style={{ display: 'flex', fontSize: 34, color: MUTED }}>
         A reading assistant for blind and low-vision people
       </div>
-    </div>
-  );
-}
-
-export function AppleIconCard() {
-  return (
-    <div style={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', background: BG }}>
-      <Logo size={132} />
     </div>
   );
 }

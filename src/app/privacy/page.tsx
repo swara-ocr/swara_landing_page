@@ -22,7 +22,7 @@ export default function PrivacyPage() {
           <p className="note">
             <strong>Draft for the team to check.</strong> This is a plain-language statement written by the project team.
             It has not been reviewed by a lawyer, and we are still checking it against what Sri Lanka&apos;s Personal
-            Data Protection Act (PDPA) requires of us. Last updated 22 November 2026.
+            Data Protection Act (PDPA) requires of us. Last updated 23 November 2026.
           </p>
 
           <h2 className="prose-h">What we collect, exactly</h2>
@@ -61,7 +61,8 @@ export default function PrivacyPage() {
           <p className="note">
             We do not ask for names, phone numbers, documents, or any health or medical information on the waitlist, and
             we ask you not to send any. SWAARA gives no medical advice. We do not add advertising trackers. The only
-            thing this website stores in your browser is your light or dark colour choice.
+            thing this website stores in a visitor&apos;s browser is the light or dark colour choice. Team members who sign in to
+            the team page also get a sign-in cookie, and visitors never do.
           </p>
 
           <h2 className="prose-h">Why we collect it</h2>

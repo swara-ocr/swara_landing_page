@@ -77,7 +77,8 @@ export default function Home() {
             </h2>
             <p className="lead">Reading starts with a good photo. Without sight, lining up the page is where it fails.</p>
             <p className="muted">
-              In one published study, 9 of 12 blind and low-vision participants found framing a photo challenging (
+              In one published study (Hong and Kacorri, 2024), 9 of 12 blind and low-vision participants found photo
+              framing challenging (
               <a href="https://arxiv.org/abs/2408.03303" rel="noopener noreferrer">
                 arXiv 2408.03303
               </a>

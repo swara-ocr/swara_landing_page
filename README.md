@@ -92,6 +92,8 @@ Until step 3, leave `NEXT_PUBLIC_SITE_URL` unset so everything uses the Vercel a
 
 ## Things to fill in or decide
 
+- **Logo spelling:** the logo artwork supplied by the team (`logoswaara.jpeg`) shows the name as "SWARA" with one A, but the project name is SWAARA. The site therefore uses only the symbol cropped from it (`public/logo/swaara-mark.png`, also the favicon, Apple icon and share image) and types the name SWAARA beside it. If you re-export the full logo with the right spelling, replace `public/logo/swaara-mark.png`, `src/app/icon.png` and `src/app/apple-icon.png`.
+
 - **GitHub link:** `SITE.githubUrl` in `src/lib/site.ts`.
 - **Sinhala version:** the site is English only. All copy is in `src/app/page.tsx`, `src/app/about/page.tsx` and `src/lib/docs.ts`. A Sinhala version needs a translation reviewed by a native reader (a first draft of the Sinhala name on the page was wrong, so do not machine-translate and publish). The waitlist form already records a language preference for updates.
 - **Statistic:** the line about 9 of 12 participants (arXiv 2408.03303) was checked against the paper's full text on 22 November 2026: it reports that 9 of its 12 blind participants found image framing challenging. The site says "framing a photo" because the paper is about photos taken with camera apps, not specifically pages.

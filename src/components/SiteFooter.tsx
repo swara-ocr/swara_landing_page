@@ -9,9 +9,9 @@ export default function SiteFooter() {
         <div className="stack g8">
           <p className="footer-brand">SWAARA</p>
           <p className="muted">
-            <a href={SITE.url} className="plain">
+            <Link href="/" className="plain">
               {SITE.host}
-            </a>
+            </Link>
           </p>
           <p className="muted">
             <a href={`mailto:${SITE.teamEmail}`} className="plain">
@@ -25,7 +25,6 @@ export default function SiteFooter() {
           <Link href="/privacy">Privacy</Link>
           <Link href="/accessibility">Accessibility</Link>
           <Link href="/contact">Contact</Link>
-          <Link href="/admin">Team sign-in</Link>
         </nav>
       </div>
       <div className="wrap footer-bottom">
