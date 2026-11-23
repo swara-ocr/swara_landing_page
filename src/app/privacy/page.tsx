@@ -50,11 +50,13 @@ export default function PrivacyPage() {
             request and your IP address, to keep the site running and secure.
           </p>
           <p>
-            <strong>Anonymous visit statistics:</strong> we use Vercel Web Analytics to count visits. It does not use
-            cookies. It records which page was viewed, the page you came from (the referrer), your approximate country,
-            and your browser, operating system and device type. Vercel describes it as not storing your IP address and as
-            not building a profile of you. We use it only to see how many people visit and which pages they read. It is
-            not used for advertising, and it is not linked to your email address or to anything you send us.
+            <strong>Visit statistics:</strong> we use Vercel Web Analytics to count visits. It uses no third-party
+            cookies. Instead, a visitor is identified by a hash made from the incoming request, and that visitor
+            session is discarded after 24 hours. For each page view it stores the time, the page address (URL), the
+            page&apos;s query parameters (filtered), the page you came from (the referrer), your approximate location
+            (country, region and city), your device&apos;s operating system and version, your browser and version, and
+            the device type (mobile, tablet or desktop). Vercel states that this data is aggregated and is not tied to
+            any individual or IP address. We use it only to see how many people visit and which pages they read.
           </p>
           <p className="note">
             We do not ask for names, phone numbers, documents, or any health or medical information on the waitlist, and
@@ -67,7 +69,7 @@ export default function PrivacyPage() {
             <li>To contact you about the SWAARA project, by email, if you asked us to. We use it for nothing else.</li>
             <li>To reply to your message, and to arrange testing if you offered to help.</li>
             <li>To keep a record that you agreed.</li>
-            <li>To see, in anonymous totals, how many people visit the site and which pages are useful.</li>
+            <li>To see, in aggregated totals, how many people visit the site and which pages they read.</li>
           </ul>
           <p>
             We rely on your consent, which you give by ticking the box on each form. We do not sell or share your details,
@@ -78,7 +80,7 @@ export default function PrivacyPage() {
           <h2 className="prose-h">Who can see it</h2>
           <p>
             Members of the SWAARA team can see waitlist entries and messages. The website is hosted on Vercel, which also
-            provides the anonymous visit statistics, and the data is stored in a Neon database. These services process
+            provides the visit statistics, and the data is stored in a Neon database. These services process
             it for us. If we email you, the email comes
             from the team email account.
           </p>

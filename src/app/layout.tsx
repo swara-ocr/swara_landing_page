@@ -67,7 +67,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <SiteHeader />
         {children}
         <SiteFooter />
-        {/* Vercel Web Analytics: cookieless page-view counts. Switched on in the Vercel dashboard. */}
+        {/* Vercel Web Analytics: page-view counts with no third-party cookies. Switched on in the Vercel dashboard. */}
         <Analytics />
       </body>
     </html>

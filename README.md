@@ -61,7 +61,7 @@ Go to `/admin` (there is a small "Team" link in the footer). The password is set
    - **Optional:** `NEXT_PUBLIC_SITE_URL` (leave it out until a real domain is connected, see below), `ADMIN_SECRET`, `EMAIL_ENABLED` and the `SMTP_*`, `MAIL_FROM`, `TEAM_EMAIL` values. Leave them out and email stays off.
    - Vercel only applies new or changed variables to **new deployments**, so redeploy after changing them.
 4. Deploy. The build command (`prisma generate && next build`) is already in `package.json`.
-5. Turn on analytics (optional): in Vercel open the project, then the **Analytics** tab, and press **Enable** (Web Analytics). Nothing else is needed: the code already includes `@vercel/analytics`. It is cookieless and starts counting visits after the next deployment. It does nothing outside Vercel.
+5. Turn on analytics (optional): in Vercel open the project, then the **Analytics** tab, and press **Enable** (Web Analytics). Nothing else is needed: the code already includes `@vercel/analytics`. It uses no third-party cookies and starts counting visits after the next deployment. `/privacy` describes what it records, taken from Vercel's own privacy documentation (vercel.com/docs/analytics/privacy-policy), so update it if that page changes. It does nothing outside Vercel.
 
 No domain is written into the code. The site works on the Vercel address (`something.vercel.app`) straight away, and canonical links, the sitemap, `robots.txt` and the social preview image all follow whichever address is live.
 
