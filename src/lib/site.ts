@@ -48,7 +48,7 @@ export const SITE = {
  */
 export const SOCIALS: { name: string; url: string }[] = [
   { name: 'GitHub', url: 'https://github.com/swara-ocr' },
-  { name: 'Instagram', url: 'https://www.instagram.com/teamswara.reads' },
+  { name: 'Instagram', url: 'https://www.instagram.com/teamswaara.reads' },
   { name: 'Facebook', url: 'https://www.facebook.com/share/195AGcZZMM/' },
   { name: 'LinkedIn', url: 'https://www.linkedin.com/company/swara-reads/' },
 ];
