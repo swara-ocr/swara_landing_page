@@ -1,4 +1,5 @@
 import { NextResponse, type NextRequest } from 'next/server';
+import { revalidatePath } from 'next/cache';
 import { db } from '@/lib/db';
 import { ADMIN_COOKIE, verifyToken } from '@/lib/auth';
 import { cleanText } from '@/lib/validate';
@@ -28,6 +29,7 @@ export async function POST(req: NextRequest) {
     } else if (intent === 'remove-signup' && id) {
       // Removes the person from the waitlist entirely (for example when they ask to be removed).
       await db.waitlistSignup.deleteMany({ where: { id } });
+      revalidatePath('/'); // the number of people waiting changed
     } else if (intent === 'handled' && id) {
       await db.contactMessage.updateMany({ where: { id, handledAt: null }, data: { handledAt: new Date() } });
     }

@@ -7,7 +7,7 @@ import { Art, RIG_INNER } from './art';
 
 const WORDS = ['Take', 'one', 'tablet', 'twice', 'daily', 'after', 'meals.'];
 
-export default function Hero() {
+export default function Hero({ waiting = '' }: { waiting?: string }) {
   const [word, setWord] = useState(2);
   const [playing, setPlaying] = useState(true);
   const [speaking, setSpeaking] = useState(false);
@@ -85,6 +85,12 @@ export default function Hero() {
             Listen to this label
           </button>
         </div>
+        {waiting && (
+          <p className="waiting">
+            <span className="waiting-dot" aria-hidden="true" />
+            {waiting}
+          </p>
+        )}
       </div>
       <div className="demo">
         <div className="rig" role="group" aria-label="Demonstration: the SWAARA station reading a medicine label aloud">

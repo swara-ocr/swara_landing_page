@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import { revalidatePath } from 'next/cache';
 import { db } from '@/lib/db';
 import { cleanText, isEmail, INTERESTS, LANGUAGES, ROLES } from '@/lib/validate';
 import { clientIp, rateLimit } from '@/lib/rateLimit';
@@ -59,6 +60,7 @@ export async function POST(req: Request) {
     });
 
     const total = await db.waitlistSignup.count({ where: { unsubscribedAt: null } });
+    revalidatePath('/'); // show the new number of people waiting on the landing page
 
     const confirmation = waitlistConfirmation(created.unsubscribeToken);
     const [sent] = await Promise.all([

@@ -92,32 +92,45 @@ if (missingRoles.length > 0 && !warned.__swaaraRoleWarning) {
 }
 
 /**
- * Screens shown in the "Key features" section, from /public/prototype. Until the real Figma exports
- * are added these are the drawn design mock-ups. To replace one, drop a PNG or WebP into
- * public/prototype/ and edit its entry: `src` is the file, `alt` describes the picture for people
- * who cannot see it, `caption` is shown beneath it, and `width` and `height` are the file's real
- * pixel size.
+ * Screens shown in the "Key features" section, from /public/prototype. They are screenshots of the
+ * working Android prototype. To change one, drop a PNG or WebP into public/prototype/ and edit its
+ * entry: `src` is the file, `alt` describes the picture for people who cannot see it, `caption` is shown
+ * beneath it, and `width` and `height` are the file's real pixel size.
  */
 export const PROTOTYPE_SCREENS: { src: string; alt: string; caption: string; width: number; height: number }[] = [
   {
-    src: '/prototype/read-screen.webp',
-    alt: 'Design mock-up of the Read screen: a page framed by four guide corners, and a spoken hint that says too dark, move to a lighter spot.',
-    caption: 'Read: spoken hints guide the framing.',
-    width: 1080,
-    height: 2000,
+    src: '/prototype/app-home.webp',
+    alt: 'Prototype home screen: the SWAARA name at the top and two very large yellow buttons on a black background, Read sample and Camera guide.',
+    caption: 'Home: two big buttons.',
+    width: 540,
+    height: 1084,
   },
   {
-    src: '/prototype/ask-screen.webp',
-    alt: 'Design mock-up of the Ask screen: the question when is it due, the answer the page says it is due on Friday, and a hold to talk microphone button.',
-    caption: 'Ask: questions answered from pages already read.',
-    width: 1080,
-    height: 2000,
+    src: '/prototype/app-read-sample.webp',
+    alt: 'Prototype Read sample screen: a Back button, one very large yellow Read sample button, and the words press the button to read the sample.',
+    caption: 'Read: press one button and listen.',
+    width: 540,
+    height: 1084,
   },
   {
-    src: '/prototype/find-screen.webp',
-    alt: 'Design mock-up of the Find screen: a radar view showing a bottle a little to the left, about 2 metres away, with beeps that speed up as you get closer.',
-    caption: 'Find: follow the beeps to an object.',
-    width: 1080,
-    height: 2000,
+    src: '/prototype/app-speech-test.webp',
+    alt: 'Prototype speech test screen: a box with a sample English sentence, yellow buttons for Speak, Stop, Pause, Resume and Hint, a speed slider, and English and Sinhala voice pickers.',
+    caption: 'Speech test: speak, pause, change speed.',
+    width: 540,
+    height: 1084,
+  },
+  {
+    src: '/prototype/app-voices.webp',
+    alt: 'Prototype speech test screen scrolled down: an English voice and a Sinhala voice picker, a Refresh voices button, and measurements such as the time to first sound.',
+    caption: 'Voices: English and Sinhala.',
+    width: 540,
+    height: 1084,
+  },
+  {
+    src: '/prototype/app-voice-list.webp',
+    alt: 'Prototype voice list: a long list of English voice options on the phone, such as en-AU, en-GB and en-US.',
+    caption: 'Every voice found on the phone.',
+    width: 540,
+    height: 1084,
   },
 ];

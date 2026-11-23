@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import { revalidatePath } from 'next/cache';
 import { db } from '@/lib/db';
 import { emailEnabled } from '@/lib/email';
 
@@ -17,6 +18,7 @@ export async function POST(req: Request) {
         where: { unsubscribeToken: token, unsubscribedAt: null },
         data: { unsubscribedAt: new Date() },
       });
+      revalidatePath('/');
     } catch (error) {
       console.error('[unsubscribe] failed:', error);
     }

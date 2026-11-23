@@ -80,7 +80,8 @@ export default function PrivacyPage() {
 
           <h2 className="prose-h">Who can see it</h2>
           <p>
-            Members of the SWAARA team can see waitlist entries and messages. The website is hosted on Vercel, which also
+            Members of the SWAARA team can see waitlist entries and messages. The home page shows only the number of people
+            on the waitlist, never who they are. The website is hosted on Vercel, which also
             provides the visit statistics, and the data is stored in a Neon database. These services process
             it for us. If we email you, the email comes
             from the team email account.

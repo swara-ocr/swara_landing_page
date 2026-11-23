@@ -6,6 +6,7 @@ import Hero from '@/components/Hero';
 import SocialLinks from '@/components/SocialLinks';
 import TeamGrid from '@/components/TeamGrid';
 import WaitlistForm from '@/components/WaitlistForm';
+import { getWaitingCount, waitingText } from '@/lib/waitlist';
 import {
   Art,
   Icon,
@@ -18,6 +19,10 @@ import {
   STEP_4,
   STEP_PRESS,
 } from '@/components/art';
+
+// The page is rebuilt at most once a minute, and straight away when someone joins (see the waitlist route),
+// so the number of people waiting stays up to date.
+export const revalidate = 60;
 
 export const metadata: Metadata = {
   // The title and description come from the site-wide defaults in layout.tsx.
@@ -58,13 +63,15 @@ const PRODUCTS = [
   },
 ];
 
-export default function Home() {
+export default async function Home() {
+  const waiting = waitingText(await getWaitingCount());
+
   return (
     <main id="main">
       {/* HERO */}
       <section id="top" className="hero" aria-labelledby="hero-h">
         <div className="wrap">
-          <Hero />
+          <Hero waiting={waiting} />
         </div>
       </section>
 
@@ -142,7 +149,7 @@ export default function Home() {
             <h2 id="features-h" className="h2">
               Key features
             </h2>
-            <p className="eyebrow">Design mock-up</p>
+            <p className="eyebrow">Screens from the app prototype</p>
           </div>
           <ul className="shots list-reset">
             {PROTOTYPE_SCREENS.map((shot) => (
@@ -154,7 +161,7 @@ export default function Home() {
                     alt={shot.alt}
                     width={shot.width}
                     height={shot.height}
-                    sizes="(max-width: 560px) 70vw, 270px"
+                    sizes="(max-width: 560px) 45vw, 200px"
                   />
                   <figcaption className="muted">{shot.caption}</figcaption>
                 </figure>
@@ -241,6 +248,12 @@ export default function Home() {
             <h2 id="join-h" className="h2">
               Join the waitlist
             </h2>
+            {waiting && (
+              <p className="waiting">
+                <span className="waiting-dot" aria-hidden="true" />
+                {waiting}
+              </p>
+            )}
             <p className="lead">Get updates when SWAARA is ready to try. Your email is used for nothing else.</p>
           </div>
           <WaitlistForm />
