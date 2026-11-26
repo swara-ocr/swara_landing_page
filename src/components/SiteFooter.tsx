@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import Link from 'next/link';
 import { SITE } from '@/lib/site';
 import SocialLinks from './SocialLinks';
@@ -7,7 +8,9 @@ export default function SiteFooter() {
     <footer className="site-footer">
       <div className="wrap footer-row">
         <div className="stack g8">
-          <p className="footer-brand">SWAARA</p>
+          <p>
+            <Image src="/logo/swaara-logo.png" alt="SWAARA" width={200} height={52} className="footer-logo" />
+          </p>
           <p className="muted">
             <Link href="/" className="plain">
               {SITE.host}

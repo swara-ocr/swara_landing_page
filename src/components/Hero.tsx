@@ -72,7 +72,7 @@ export default function Hero({ waiting = '' }: { waiting?: string }) {
   return (
     <div className="hero-grid">
       <div className="hero-copy">
-        <Image src="/logo/swaara-mark.png" alt="SWAARA logo: an open book with an eye above it" width={152} height={152} className="hero-logo" priority />
+        <Image src="/logo/swaara-logo.png" alt="SWAARA logo" width={330} height={85} className="hero-logo" priority />
         <h1 id="hero-h" className="hero-title">
           Put a page down. <span className="mark">Hear it read.</span>
         </h1>

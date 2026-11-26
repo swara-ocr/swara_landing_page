@@ -82,9 +82,8 @@ export default function SiteHeader() {
       <header className="site-header" ref={header}>
         <div className="wrap header-row">
           <Link href="/" className="logo" onClick={close}>
-            {/* The picture's alt text names the link. The visible word repeats it, so it is hidden from screen readers. */}
-            <Image src="/logo/swaara-mark.png" alt="SWAARA, home page" width={44} height={44} className="logo-mark" priority />
-            <span aria-hidden="true">SWAARA</span>
+            {/* The picture holds the name, so its alt text names the link. */}
+            <Image src="/logo/swaara-logo.png" alt="SWAARA, home page" width={178} height={46} className="logo-img" priority />
           </Link>
           <button
             ref={button}

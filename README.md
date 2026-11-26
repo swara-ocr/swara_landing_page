@@ -92,7 +92,7 @@ Until step 3, leave `NEXT_PUBLIC_SITE_URL` unset so everything uses the Vercel a
 
 ## Things to fill in or decide
 
-- **Logo spelling:** the logo artwork supplied by the team (`logoswaara.jpeg`) shows the name as "SWARA" with one A, but the project name is SWAARA. The site therefore uses only the symbol cropped from it (`public/logo/swaara-mark.png`, also the favicon, Apple icon and share image) and types the name SWAARA beside it. If you re-export the full logo with the right spelling, replace `public/logo/swaara-mark.png`, `src/app/icon.png` and `src/app/apple-icon.png`.
+- **Logo:** the site uses `public/logo/swaara-logo.png`, a wide version of the team's logo with the name spelled SWAARA (the first artwork supplied read "SWARA"). It appears in the header, hero, footer and share preview image. The favicon and Apple icon (`src/app/icon.png`, `src/app/apple-icon.png`) use only the book-and-eye symbol, because the wording is unreadable at that size.
 
 - **GitHub link:** `SITE.githubUrl` in `src/lib/site.ts`.
 - **Sinhala version:** the site is English only. All copy is in `src/app/page.tsx`, `src/app/about/page.tsx` and `src/lib/docs.ts`. A Sinhala version needs a translation reviewed by a native reader (a first draft of the Sinhala name on the page was wrong, so do not machine-translate and publish). The waitlist form already records a language preference for updates.

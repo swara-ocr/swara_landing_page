@@ -10,11 +10,11 @@ const TEXT = '#EAF2FA';
 const MUTED = '#A9BCD0';
 
 /**
- * Reads the logo mark from /public/logo as a data URL, so the picture below can draw it. The preview
+ * Reads the logo from /public/logo as a data URL, so the picture below can draw it. The preview
  * images are made once while the site is built (on Node), so reading the file from disk is fine.
  */
 export async function loadLogo(): Promise<string> {
-  const file = await readFile(join(process.cwd(), 'public', 'logo', 'swaara-mark.png'));
+  const file = await readFile(join(process.cwd(), 'public', 'logo', 'swaara-logo.png'));
   return `data:image/png;base64,${file.toString('base64')}`;
 }
 
@@ -33,10 +33,9 @@ export function OgCard({ logo }: { logo: string }) {
         fontFamily: 'sans-serif',
       }}
     >
-      <div style={{ display: 'flex', alignItems: 'center' }}>
+      <div style={{ display: 'flex' }}>
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src={logo} width={112} height={112} alt="" style={{ borderRadius: 26 }} />
-        <div style={{ display: 'flex', marginLeft: 28, fontSize: 84, fontWeight: 700, letterSpacing: 6 }}>SWAARA</div>
+        <img src={logo} width={481} height={124} alt="" />
       </div>
 
       <div style={{ display: 'flex', flexDirection: 'column' }}>
